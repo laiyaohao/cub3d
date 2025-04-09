@@ -29,10 +29,18 @@ enum
 	destroy = 17
 };
 
+typedef struct s_player
+{
+	int	p_x;
+	int	p_y;
+	int	direction;
+}				t_player;
+
 typedef struct s_game
 {
-    
-};
+    char		**map;
+	t_player	*p;
+}				t_game;
 
 typedef struct s_mlx
 {
@@ -40,6 +48,7 @@ typedef struct s_mlx
     void    *mlx_win;
 }               t_mlx;
 
-int main(int argc, char **argv);
+int 	main(int argc, char **argv);
+void	init(char **argv, t_game *game, t_player *p, t_mlx *mlx);
 
 #endif

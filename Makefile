@@ -27,6 +27,10 @@ INIT_FOLDER := ${addprefix ${SRC_FOLDER}, /init/}
 INIT_FILENAMES := init.c
 INIT_FILES := ${addprefix ${INIT_FOLDER}, ${INIT_FILENAMES}}
 
+MAP_FOLDER := ${addprefix ${SRC_FOLDER}, /map/}
+MAP_FILENAMES := map.c
+MAP_FILES := ${addprefix ${INIT_FOLDER}, ${INIT_FILENAMES}}
+
 SRC_FILES := ${MAIN_FILES}
 
 OBJS := ${SRC_FILES:.c=.o}
