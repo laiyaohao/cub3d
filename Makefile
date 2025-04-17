@@ -27,9 +27,9 @@ INIT_FOLDER := ${addprefix ${SRC_FOLDER}, /init/}
 INIT_FILENAMES := init.c
 INIT_FILES := ${addprefix ${INIT_FOLDER}, ${INIT_FILENAMES}}
 
-MAP_FOLDER := ${addprefix ${SRC_FOLDER}, /map/}
-MAP_FILENAMES := map.c
-MAP_FILES := ${addprefix ${INIT_FOLDER}, ${INIT_FILENAMES}}
+GRAPHICS_FOLDER := ${addprefix ${SRC_FOLDER}, /graphics/}
+GRAPHICS_FILENAMES := window.c raycasting.c
+GRAPHICS_FILES := ${addprefix ${GRAPHICS_FOLDER}, ${GRAPHICS_FILENAMES}}
 
 SRC_FILES := ${MAIN_FILES}
 

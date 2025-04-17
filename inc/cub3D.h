@@ -31,14 +31,21 @@ enum
 
 typedef struct s_player
 {
-	int	p_x;
-	int	p_y;
-	int	direction;
+	double		p_x;	//x start position
+	double		p_y;	//y start position
+	double		d_x;	//initial x direction
+	double		d_y;	//initial y direction
+	double		fov;	// 2 *atan(0.66/1.0) = 66degrees
+	double		p_angle;
 }				t_player;
 
 typedef struct s_game
 {
     char		**map;
+	double		plane_x;
+	double		plane_y;
+	double		time;
+	double		old_time;
 	t_player	*p;
 }				t_game;
 
