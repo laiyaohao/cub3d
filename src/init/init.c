@@ -3,12 +3,13 @@
 void    init_game(char **argv, t_game *game, t_player *p)
 {
     ft_memset(game, 0, sizeof(t_game));
-    game->map = ft_split(argv, '\n');
-    if (!game->map)
-    {
-        perror("Error: Fatal failed to malloc for map\n");
-        exit (1);
-    }
+    // game->map = ft_split(argv, '\n');
+    // if (!game->map)
+    // {
+    //     perror("Error: Fatal failed to malloc for map\n");
+    //     exit (1);
+    // }
+    (void)argv;
     game->p = p;
 }
 

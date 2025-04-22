@@ -7,6 +7,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
+# include <math.h>
 
 # define KEY_LEFT 65361
 # define KEY_UP 65362
@@ -42,6 +43,8 @@ typedef struct s_player
 typedef struct s_game
 {
     char		**map;
+	int			max_w;
+	int			max_h;
 	double		plane_x;
 	double		plane_y;
 	double		time;
@@ -56,6 +59,8 @@ typedef struct s_mlx
 }               t_mlx;
 
 int 	main(int argc, char **argv);
-void	init(char **argv, t_game *game, t_player *p, t_mlx *mlx);
+void    init(char **argv, t_game *game, t_player *p, t_mlx *mlx);
+void    game_start(t_mlx *mlx, t_game *game);
+void    create_window(t_mlx *mlx, t_game *game);
 
 #endif

@@ -1,6 +1,6 @@
 # Compiler and flags
 CC := cc
-CFLAGS := -Wall -Werror -Wextra -g
+CFLAGS := -Wall -Werror -Wextra -g #-lm
 MLXFLAGS := -lmlx -lX11 -lXext
 
 
@@ -28,10 +28,10 @@ INIT_FILENAMES := init.c
 INIT_FILES := ${addprefix ${INIT_FOLDER}, ${INIT_FILENAMES}}
 
 GRAPHICS_FOLDER := ${addprefix ${SRC_FOLDER}, /graphics/}
-GRAPHICS_FILENAMES := window.c raycasting.c
+GRAPHICS_FILENAMES := window.c game.c
 GRAPHICS_FILES := ${addprefix ${GRAPHICS_FOLDER}, ${GRAPHICS_FILENAMES}}
 
-SRC_FILES := ${MAIN_FILES}
+SRC_FILES := ${MAIN_FILES} ${INIT_FILES} ${GRAPHICS_FILES}
 
 OBJS := ${SRC_FILES:.c=.o}
 
