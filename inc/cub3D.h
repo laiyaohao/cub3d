@@ -7,6 +7,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
+# include "../minilibx-linux/mlx.h"
 # include <math.h>
 
 # define KEY_LEFT 65361
@@ -61,6 +62,6 @@ typedef struct s_mlx
 int 	main(int argc, char **argv);
 void    init(char **argv, t_game *game, t_player *p, t_mlx *mlx);
 void    game_start(t_mlx *mlx, t_game *game);
-void    create_window(t_mlx *mlx, t_game *game);
+void    create_window(t_mlx *mlx);
 
 #endif
