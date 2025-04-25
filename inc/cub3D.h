@@ -41,6 +41,12 @@ typedef struct s_player
 	double		p_angle;
 }				t_player;
 
+typedef struct s_mlx
+{
+	void    *mlx_ptr;
+	void    *mlx_win;
+}               t_mlx;
+
 typedef struct s_game
 {
     char		**map;
@@ -51,17 +57,12 @@ typedef struct s_game
 	double		time;
 	double		old_time;
 	t_player	*p;
+	t_mlx		*mlx;
 }				t_game;
-
-typedef struct s_mlx
-{
-    void    *mlx_ptr;
-    void    *mlx_win;
-}               t_mlx;
 
 int 	main(int argc, char **argv);
 void    init(char **argv, t_game *game, t_player *p, t_mlx *mlx);
-void    game_start(t_mlx *mlx, t_game *game);
+void    game_start(t_game *game);
 void    create_window(t_mlx *mlx);
 
 #endif
