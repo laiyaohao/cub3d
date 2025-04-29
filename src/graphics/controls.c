@@ -1,22 +1,39 @@
 #include "../../inc/cub3D.h"
 
-void    key_press(int key, t_game *game)
+int    exit_game(t_game *game)
 {
-    if (game->mlx->move == 0)
+    if (game->mlx->mlx_win)
+    {
+        mlx_clear_window(game->mlx->mlx_ptr, game->mlx->mlx_win);
+        mlx_destroy_window(game->mlx->mlx_ptr, game->mlx->mlx_win);
+    }
+    if (game->mlx->mlx_ptr)
+    {
+        mlx_destroy_display(game->mlx->mlx_ptr);
+        free(game->mlx->mlx_ptr);
+    }
+    cleanup(game);
+    exit (0);
+}
+
+int    key_press(int key, t_game *game)
+{
+    if (game->p->move == 0)
     {
         if (key == KEY_W)
-            game->mlx->move = 1;
+            game->p->move = 1;
         else if (key == KEY_S)
-            game->mlx->move = 2;
+            game->p->move = 2;
         else if (key == KEY_A)
-            game->mlx->move = 3;
+            game->p->move = 3;
         else if (key == KEY_D)
-            game->mlx->move = 4;
+            game->p->move = 4;
         else if (key == KEY_LEFT)
-            game->p->p_angle -= 1;
+            game->p->p_dir -= 1;
         else if (key == KEY_RIGHT)
-            game->p->p_angle += 1;
+            game->p->p_dir += 1;
     }
     if (key == KEY_ESC)
-        exit_game(mlx);
+        exit_game(game);
+    return (0);
 }

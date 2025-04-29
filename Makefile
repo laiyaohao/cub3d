@@ -23,15 +23,23 @@ MAIN_FOLDER := ${addprefix ${SRC_FOLDER}, /main/}
 MAIN_FILENAMES := main.c
 MAIN_FILES := ${addprefix ${MAIN_FOLDER}, ${MAIN_FILENAMES}}
 
+GRAPHICS_FOLDER := ${addprefix ${SRC_FOLDER}, /graphics/}
+GRAPHICS_FILENAMES := window.c game.c controls.c
+GRAPHICS_FILES := ${addprefix ${GRAPHICS_FOLDER}, ${GRAPHICS_FILENAMES}}
+
 INIT_FOLDER := ${addprefix ${SRC_FOLDER}, /init/}
 INIT_FILENAMES := init.c
 INIT_FILES := ${addprefix ${INIT_FOLDER}, ${INIT_FILENAMES}}
 
-GRAPHICS_FOLDER := ${addprefix ${SRC_FOLDER}, /graphics/}
-GRAPHICS_FILENAMES := window.c game.c
-GRAPHICS_FILES := ${addprefix ${GRAPHICS_FOLDER}, ${GRAPHICS_FILENAMES}}
+MAP_FOLDER := ${addprefix ${SRC_FOLDER}, /map/}
+MAP_FILENAMES := check_file.c parse_map.c
+MAP_FILES := ${addprefix ${MAP_FOLDER}, ${MAP_FILENAMES}}
 
-SRC_FILES := ${MAIN_FILES} ${INIT_FILES} ${GRAPHICS_FILES}
+UTILS_FOLDER := ${addprefix ${SRC_FOLDER}, /utils/}
+UTILS_FILENAMES := strcjoin.c cleanup.c
+UTILS_FILES := ${addprefix ${UTILS_FOLDER}, ${UTILS_FILENAMES}}
+
+SRC_FILES := ${MAIN_FILES} ${GRAPHICS_FILES} ${INIT_FILES} ${MAP_FILES} ${UTILS_FILES}
 
 OBJS := ${SRC_FILES:.c=.o}
 
