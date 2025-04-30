@@ -57,6 +57,9 @@ typedef struct s_game
 	int			max_h;
 	double		plane_x;
 	double		plane_y;
+	double		camera_x;
+	double		ray_dx;
+	double		ray_dy;
 	double		time;
 	double		old_time;
 	t_player	*p;
