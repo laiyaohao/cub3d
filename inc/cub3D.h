@@ -67,6 +67,7 @@ int				main(int argc, char **argv);
 void			init(t_game *game, t_player *p, t_mlx *mlx);
 void			check_file(char **argv, t_game *game);
 void			read_map(t_game *game);
+void    		parse_map(char **argv, t_game *game);
 void			game_start(t_game *game);
 int				exit_game(t_game *game);
 void			create_window(t_mlx *mlx);

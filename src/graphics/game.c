@@ -1,16 +1,9 @@
 #include "../../inc/cub3D.h"
 
-// int     run_game(t_game *game)
-// {
-//     double  new_x;
-//     double  new_y;
-//     double  new_dir;
-
-//     if (game->p->move > 0)
-//     {
-//         if (game->p->move == 1);
-//     }
-// }
+int     run_game(t_game *game)
+{
+	//raycast
+}
 
 void    game_start(t_game *game)
 {

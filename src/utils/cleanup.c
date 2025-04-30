@@ -7,7 +7,7 @@ void    free_2d(void **content)
     i = 0;
     if (!content)
         return ;
-    if (content[i])
+    while (content[i])
     {
         free(content[i]);
         i++;
