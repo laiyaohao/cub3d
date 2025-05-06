@@ -49,6 +49,12 @@ typedef struct s_mlx
 	void		*mlx_win;
 }				t_mlx;
 
+typedef	struct s_ray
+{
+	
+}				t_ray;
+
+
 typedef struct s_game
 {
 	int			map_fd;
