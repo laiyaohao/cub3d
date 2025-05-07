@@ -20,6 +20,8 @@
 # define KEY_S 115
 # define KEY_W 119
 # define KEY_ESC 65307
+# define S_HEIGHT 720
+# define S_WIDTH 1280
 
 enum
 {
@@ -30,6 +32,15 @@ enum
 	mousemove = 6,
 	expose = 12,
 	destroy = 17
+};
+
+enum
+{
+	N_T,
+	S_T,
+	E_T,
+	W_T,
+	T_COUNT
 };
 
 typedef struct s_player
@@ -54,11 +65,32 @@ typedef	struct s_ray
 	
 }				t_ray;
 
+typedef	struct s_texture
+{
+	void	*image;
+	char	*data;
+	int		w;
+	int		h;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}				t_texture;
+
+typedef struct s_img
+{
+	void	*img_ptr;
+	char	*data;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}				t_img;
+
 
 typedef struct s_game
 {
 	int			map_fd;
 	char		**map;
+	char		t_path[T_COUNT];
 	int			max_w;
 	int			max_h;
 	double		plane_x;
@@ -70,16 +102,18 @@ typedef struct s_game
 	double		old_time;
 	t_player	*p;
 	t_mlx		*mlx;
+	t_texture	t[T_COUNT];
+	t_img		*img;
 }				t_game;
 
 int				main(int argc, char **argv);
-void			init(t_game *game, t_player *p, t_mlx *mlx);
+void			init(t_game *game);
 void			check_file(char **argv, t_game *game);
 void			read_map(t_game *game);
 void    		parse_map(char **argv, t_game *game);
 void			game_start(t_game *game);
 int				exit_game(t_game *game);
-void			create_window(t_mlx *mlx);
+void			create_window(t_game *game);
 int				key_press(int key, t_game *game);
 void			strcjoin(int c, char **res);
 void    		cleanup(t_game *game);

@@ -14,15 +14,8 @@ void	init_p(t_game *game)
 
 int     run_game(t_game *game)
 {
-	int x;
-
-	x = 0;
-	while (x < game->max_w)
-	{
-		game->camera_x = 2 * x / (double)w - 1;
-		game->ray_dx = game->p->d_x + game->plane_x * game->camera_x;
-		game->ray_dy = game->p->d_y + game->plane_y * game->camera_x;
-	}
+	render_floor();
+	render_wall();
 }
 
 void    game_start(t_game *game)
