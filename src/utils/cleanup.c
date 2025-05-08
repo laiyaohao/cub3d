@@ -21,4 +21,6 @@ void    cleanup(t_game *game)
         return ;
     if (game->map)
         free_2d((void **)game->map);
+    if (game->t_path)
+        free_2d((void **)game->t_path);
 }

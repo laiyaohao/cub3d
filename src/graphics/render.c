@@ -4,57 +4,61 @@ void	render_floor(t_game *game)
 {
 	int				x;
 	int				y;
-	int				pos;
+	int				r;
+	int				g;
+	int				b;
 	int				cell_x;
 	int				cell_y;
-	int				t_x;
-	int				t_y;
-	unsigned int	color;
-	float			pos_z;
-	float			row_d;
-	float			ray_dx0;
-	float			ray_dy0;
-	float			ray_dx1;
-	float			ray_dy1;
-	float			floor_x;
-	float			floor_y;
-	float			floor_sx;
-	float			floor_sy;
-	int				floor_t;
-	int				ceiling_t;
+	t_fray			f;
+	// int				t_x;
+	// int				t_y;
+	// int				floor_t;
+	// int				ceiling_t;
+	// int				t_offset;
 
+	f = game->floor_ray;
 	y = 0;
 	while (y < S_HEIGHT)
 	{
-		ray_dx0 = game->p->d_x - game->plane_x;
-		ray_dy0 = game->p->d_y - game->plane_y;
-		ray_dx1 = game->p->d_x + game->plane_x;
-		ray_dy1 = game->p->d_y + game->plane_y;
-		pos = y - S_HEIGHT / 2;
-		pos_z = 0.5 * S_HEIGHT;
-		row_d = pos_z / pos;
-		floor_sx = row_d * (ray_dx1 - ray_dx0) / S_HEIGHT;
-		floor_sy = row_d * (ray_dy1 - ray_dy0) / S_HEIGHT;
-		floor_x = game->p->p_x + row_d * ray_dx0;
-		floor_y = game->p->py + row_d * ray_dy0;
+		f.ray_dx0 = game->p.d_x - game->p.plane_x;
+		f.ray_dy0 = game->p.d_y - game->p.plane_y;
+		f.ray_dx1 = game->p.d_x + game->p.plane_x;
+		f.ray_dy1 = game->p.d_y + game->p.plane_y;
+		f.pos = y - S_HEIGHT / 2;
+		f.pos_z = 0.5 * S_HEIGHT;
+		f. row_d = f.pos_z / f.pos;
+		f.floor_sx = f.row_d * (f.ray_dx1 - f.ray_dx0) / S_HEIGHT;
+		f.floor_sy = f.row_d * (f.ray_dy1 - f.ray_dy0) / S_HEIGHT;
+		f.floor_x = game->p.p_x + f.row_d * f.ray_dx0;
+		f.floor_y = game->p.p_y + f.row_d * f.ray_dy0;
 		x = 0;
 		while (x++ < S_WIDTH)
 		{
-			cell_x = (int)floor_x;
-			cell_y = (int)floor_y;
-			tx = ((int)(tex_w * (floor_x - cell_x))) & (tex_w - 1);
-			ty = ((int)(tex_w * (floor_y - cell_y))) & (tex_w - 1);
-			floor_x += floor_sx;
-			floor_y += floor_sy;
-			// choose texture and draw the pixel
-			floor_t = 3;
-			ceiling_t = 6;
-			// floor
-			color = texture[floor_t][tex_w * ty + tx];
-			buffer[y][x] = color;
-			// ceiling
-			color = texture[ceiling_t][tex_w * ty + tx];
-			buffer[720 - y - 1][x] = color;
+			cell_x = (int)f.floor_x;
+			cell_y = (int)f.floor_y;
+			// t_x = ((int)(tex_w * (floor_x - cell_x))) & (tex_w - 1);
+			// t_y = ((int)(tex_w * (floor_y - cell_y))) & (tex_w - 1);
+			f.floor_x += f.floor_sx;
+			f.floor_y += f.floor_sy;
+			// floor texture
+			// t_offset = t_y * game->t[floor_t].line_len + t_x * (game->t[floor_t].bpp / 8);
+			// color = *(unsigned int *)(game->t[floor_t].data + t_offset);
+			r = 50;
+			g = 50;
+			b = 50;
+			f.color = (r << 16) | (g << 8) | b;
+			f.img_offset = y * game->img.line_len + x * (game->img.bpp / 8);
+			*(unsigned int *)(game->img.data + f.img_offset) = f.color;
+			// ceiling texture
+			// t_offset = t_y * game->t[ceiling_t].line_len + t_x * (game->t[ceiling_t].bpp / 8);
+			// color = *(unsigned int *)(game->t[ceiling_t].data + t_offset);
+			r = 70;
+			g = 70;
+			b = 70;
+			f.color = (r << 16) | (g << 8) | b;
+			f.ceiling_y = S_HEIGHT - y - 1;
+			f.img_offset = f.ceiling_y * game->img.line_len + x * (game->img.bpp / 8);
+			*(unsigned int *)(game->img.data + f.img_offset) = f.color;
 		}
 		y++;
 	}
@@ -96,10 +100,10 @@ void	render_wall(t_game *game)
 	while (x < S_WIDTH)
 	{
 		// calculate ray position and direction
-		camera_x = 2 * x / (double)game->S_WIDTH - 1;
-		ray_dx = game->p->d_x + game->plane_x * camera_x;
-		ray_dy = game->p->d_y + game->plane_y * camera_x;
-		
+		camera_x = 2 * x / (double)S_WIDTH - 1;
+		ray_dx = game->p.d_x + game->p.plane_x * camera_x;
+		ray_dy = game->p.d_y + game->p.plane_y * camera_x;
+
 		// which box of the map the player is in
 		map_x = game->p.p_x;
 		map_y = game->p.p_y;
@@ -117,7 +121,7 @@ void	render_wall(t_game *game)
 			// calculate step and initial side distance
 		if (ray_dx < 0)
 		{
-			step_x - 1;
+			step_x = -1;
 			side_dx = (game->p.p_x - map_x) * delta_dx;
 		}
 		else
@@ -137,6 +141,7 @@ void	render_wall(t_game *game)
 		}
 		
 		// DDA
+		hit = 0;
 		while (hit == 0)
 		{
 			// jump to next map square, either in x or y direction
@@ -153,7 +158,7 @@ void	render_wall(t_game *game)
 				side = 1;
 			}
 			// check if ray has hit a wall
-			if (game->map[map_y][map_x] > 0)
+			if (game->map[map_y][map_x] == '1')
 				hit = 1;
 		}
 		
@@ -164,17 +169,17 @@ void	render_wall(t_game *game)
 			pwall_d = side_dy - delta_dy;
 		
 			// calculate height of line to draw on screen
-		line_h = (int)(game->max_h / pwall_d);
+		line_h = (int)(S_HEIGHT / pwall_d);
 		
 		// calculate lowest and highest pixel to fill in current stripe
-		draw_start = -line_h / 2 + game->max_h / 2;
+		draw_start = -line_h / 2 + S_HEIGHT / 2;
 		if (draw_start < 0)
 			draw_start = 0;
-		draw_end = line_h / 2 + h / 2;
-		if (draw_end >= h)
-			draw_end = h - 1;
+		draw_end = line_h / 2 + S_HEIGHT / 2;
+		if (draw_end >= S_HEIGHT)
+			draw_end = S_HEIGHT - 1;
 		
-			// determine texture to use based on ray
+		// determine texture to use based on ray
 		if (side == 0)
 		{
 			if (ray_dx > 0)
@@ -201,15 +206,15 @@ void	render_wall(t_game *game)
 		// x coordinate on texture
 		t_x = (int)(wall_x * (double)tex->w);
 		if (side == 0 && ray_dx > 0)
-			t_x = game->tex->w - t_x - 1;
+			t_x = tex->w - t_x - 1;
 		if (side == 1 && ray_dy < 0)
-			t_x = game->tex->w - t_x - 1;
+			t_x = tex->w - t_x - 1;
 		
 		// how much to increase the texture coordinate per screen pixel
-		p_step = 1.0 * game->tex->h / line_h;
+		p_step = 1.0 * tex->h / line_h;
 		
 		// starting texture coordinate
-		t_pos = (draw_start - game->max_h / 2 + line_h / 2) * p_step;
+		t_pos = (draw_start - S_HEIGHT / 2 + line_h / 2) * p_step;
 		y = draw_start;
 		while (y < draw_end)
 		{
@@ -221,11 +226,10 @@ void	render_wall(t_game *game)
 			// make color darker
 			if (side == 1)
 				color = (color >> 1) & 8355711;
-			img_offset = y * game->img.line_len + x * (game->img->bpp / 8);
+			img_offset = y * game->img.line_len + x * (game->img.bpp / 8);
 			*(unsigned int *)(game->img.data + img_offset) = color;
 			y++;
 		}
 		x++;
 	}
-	mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.mlx_win, game->img, 0, 0);
 }

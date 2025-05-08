@@ -1,6 +1,6 @@
 # Compiler and flags
 CC := cc
-CFLAGS := -Wall -Werror -Wextra -g #-lm
+CFLAGS := -Wall -Werror -Wextra -g
 MLXFLAGS := -lmlx -lX11 -lXext
 
 
@@ -24,7 +24,7 @@ MAIN_FILENAMES := main.c
 MAIN_FILES := ${addprefix ${MAIN_FOLDER}, ${MAIN_FILENAMES}}
 
 GRAPHICS_FOLDER := ${addprefix ${SRC_FOLDER}, /graphics/}
-GRAPHICS_FILENAMES := window.c game.c controls.c
+GRAPHICS_FILENAMES := window.c game.c controls.c images.c render.c
 GRAPHICS_FILES := ${addprefix ${GRAPHICS_FOLDER}, ${GRAPHICS_FILENAMES}}
 
 INIT_FOLDER := ${addprefix ${SRC_FOLDER}, /init/}
@@ -86,7 +86,7 @@ ${MLX}:
 
 # Build executable program (cub3D)
 ${NAME}: ${OBJS}
-	${CC} ${CFLAGS} ${OBJS} ${LIBFT} -L${MLX_FOLDER} ${MLXFLAGS} -o $@
+	${CC} ${CFLAGS} ${OBJS} ${LIBFT} -L${MLX_FOLDER} ${MLXFLAGS} -o $@ -lm
 
 
 # Object file compilation rule
