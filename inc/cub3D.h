@@ -54,6 +54,17 @@ typedef struct s_player
 	double		plane_y;
 }				t_player;
 
+typedef	struct s_input
+{
+	int	rot_left;
+	int	rot_right;
+	int	move_up;
+	int	move_left;
+	int	move_right;
+	int	move_down;
+}				t_input;
+
+
 typedef struct s_mlx
 {
 	void		*mlx_ptr;
@@ -121,6 +132,7 @@ typedef struct s_game
 	double		time;
 	double		old_time;
 	t_player	p;
+	t_input		input;
 	t_mlx		mlx;
 	t_texture	t[T_COUNT];
 	t_img		img;
