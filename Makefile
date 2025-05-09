@@ -24,7 +24,7 @@ MAIN_FILENAMES := main.c
 MAIN_FILES := ${addprefix ${MAIN_FOLDER}, ${MAIN_FILENAMES}}
 
 GRAPHICS_FOLDER := ${addprefix ${SRC_FOLDER}, /graphics/}
-GRAPHICS_FILENAMES := window.c game.c controls.c player.c images.c render.c
+GRAPHICS_FILENAMES := game.c controls.c player.c images.c render.c
 GRAPHICS_FILES := ${addprefix ${GRAPHICS_FOLDER}, ${GRAPHICS_FILENAMES}}
 
 INIT_FOLDER := ${addprefix ${SRC_FOLDER}, /init/}

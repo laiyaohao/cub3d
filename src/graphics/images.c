@@ -10,8 +10,8 @@ void	process_textures(t_game *game)
 	i = 0;
 	while (i < T_COUNT)
 	{
-		game->t[i].image = mlx_xpm_file_to_image(game->mlx.mlx_ptr, game->t_path[i],
-				&game->t[i].w, &game->t[i].h);
+		game->t[i].image = mlx_xpm_file_to_image(game->mlx.mlx_ptr,
+				game->t_path[i], &game->t[i].w, &game->t[i].h);
 		if (!game->t[i].image)
 		{
 			ft_putstr_fd("Error: Invalid texture file, please use a .xpm\n", 2);

@@ -2,18 +2,30 @@
 
 void	process_p(t_game *game, int c, int *count)
 {
-    (void)c;
-    (void)game;
 	printf("Hi player here\n");
     *count += 1;
-	// if (c == 'N')
-	//     something;
-	// else if (c == 'S')
-	//     something;
-	// else if (c == 'E')
-	//     something;
-	// else if (c == 'W')
-	//     something;
+	if (c == 'N')
+	{
+		game->p.d_x = 0;
+		game->p.d_y = -1;
+	}
+	else if (c == 'S')
+	{
+		game->p.d_x = 0;
+		game->p.d_y = 1;
+	}
+	else if (c == 'E')
+	{
+		game->p.d_x = 1;
+		game->p.d_y = 0;
+	}
+	else if (c == 'W')
+	{
+		game->p.d_x = -1;
+		game->p.d_y = 0;
+	}
+	game->p.plane_x = -game->p.d_y * 0.66;
+	game->p.plane_y = game->p.d_x * 0.66;
 }
 
 void    check_c(int c, int *count, t_game *game)

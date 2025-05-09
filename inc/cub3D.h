@@ -20,8 +20,8 @@
 # define KEY_S 115
 # define KEY_W 119
 # define KEY_ESC 65307
-# define S_HEIGHT 720
-# define S_WIDTH 1280
+# define S_HEIGHT 768
+# define S_WIDTH 1024
 
 enum
 {
@@ -129,8 +129,6 @@ typedef struct s_game
 	double		camera_x;
 	double		ray_dx;
 	double		ray_dy;
-	double		time;
-	double		old_time;
 	t_player	p;
 	t_input		input;
 	t_mlx		mlx;
@@ -142,13 +140,11 @@ typedef struct s_game
 
 int				main(int argc, char **argv);
 void			init(t_game *game);
-void			init_p(t_game *game);
 void			check_file(char **argv, t_game *game);
 void			read_map(t_game *game);
 void			parse_map(char **argv, t_game *game);
 void			game_start(t_game *game);
 int				exit_game(t_game *game);
-void			create_window(t_game *game);
 void			process_textures(t_game *game);
 void			render_wall(t_game *game);
 void			render_floor(t_game *game);

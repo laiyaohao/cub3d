@@ -103,7 +103,7 @@ void	render_wall(t_game *game)
 		camera_x = 2 * x / (double)S_WIDTH - 1;
 		ray_dx = game->p.d_x + game->p.plane_x * camera_x;
 		ray_dy = game->p.d_y + game->p.plane_y * camera_x;
-
+		
 		// which box of the map the player is in
 		map_x = (int)game->p.p_x;
 		map_y = (int)game->p.p_y;
