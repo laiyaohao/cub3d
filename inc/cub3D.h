@@ -152,7 +152,10 @@ void			create_window(t_game *game);
 void			process_textures(t_game *game);
 void			render_wall(t_game *game);
 void			render_floor(t_game *game);
-int				key_press(int key, t_game *game);
+int				key_up(int key, t_game *game);
+int				key_down(int key, t_game *game);
+void    		process_movement(t_game *game);
+void    		process_rotation(t_game *game);
 void			strcjoin(int c, char **res);
 void			cleanup(t_game *game);
 

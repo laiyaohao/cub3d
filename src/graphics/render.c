@@ -7,9 +7,9 @@ void	render_floor(t_game *game)
 	int				r;
 	int				g;
 	int				b;
-	int				cell_x;
-	int				cell_y;
 	t_fray			f;
+	// int				cell_x;
+	// int				cell_y;
 	// int				t_x;
 	// int				t_y;
 	// int				floor_t;
@@ -34,8 +34,8 @@ void	render_floor(t_game *game)
 		x = 0;
 		while (x++ < S_WIDTH)
 		{
-			cell_x = (int)f.floor_x;
-			cell_y = (int)f.floor_y;
+			// cell_x = (int)f.floor_x;
+			// cell_y = (int)f.floor_y;
 			// t_x = ((int)(tex_w * (floor_x - cell_x))) & (tex_w - 1);
 			// t_y = ((int)(tex_w * (floor_y - cell_y))) & (tex_w - 1);
 			f.floor_x += f.floor_sx;
@@ -105,8 +105,8 @@ void	render_wall(t_game *game)
 		ray_dy = game->p.d_y + game->p.plane_y * camera_x;
 
 		// which box of the map the player is in
-		map_x = game->p.p_x;
-		map_y = game->p.p_y;
+		map_x = (int)game->p.p_x;
+		map_y = (int)game->p.p_y;
 		
 		// length of ray from one x or y side to the next x or y side
 		if (ray_dx == 0)
