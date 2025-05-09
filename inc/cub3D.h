@@ -40,6 +40,8 @@ enum
 	S_T,
 	E_T,
 	W_T,
+	F_T,
+	C_T,
 	T_COUNT
 };
 
@@ -99,16 +101,16 @@ typedef	struct s_fray
 {
 	int				pos;
 	unsigned int	color;
-	float			pos_z;
-	float			row_d;
-	float			ray_dx0;
-	float			ray_dy0;
-	float			ray_dx1;
-	float			ray_dy1;
-	float			floor_x;
-	float			floor_y;
-	float			floor_sx;
-	float			floor_sy;
+	double			pos_z;
+	double			row_d;
+	double			ray_dx0;
+	double			ray_dy0;
+	double			ray_dx1;
+	double			ray_dy1;
+	double			floor_x;
+	double			floor_y;
+	double			floor_sx;
+	double			floor_sy;
 	int				img_offset;
 	int				ceiling_y;
 }				t_fray;
