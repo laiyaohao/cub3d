@@ -12,10 +12,9 @@ int main(int argc, char **argv)
     else
     {
         ft_memset(&game, 0, sizeof(t_game));
-        init(&game); // initialise the structs we use
+        init(&game); // initialise values which should be obtained from parsing the map
         parse_map(argv, &game);
         game_start(&game);
-        //free_all(); // cleanup
         return (0);
     }
 }

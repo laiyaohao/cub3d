@@ -1,5 +1,6 @@
 #ifndef CUB3D_H
 # define CUB3D_H
+# define _USE_MATH_DEFINES
 
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
@@ -20,8 +21,8 @@
 # define KEY_S 115
 # define KEY_W 119
 # define KEY_ESC 65307
-# define S_HEIGHT 768
-# define S_WIDTH 1024
+# define S_HEIGHT 1024
+# define S_WIDTH 1280
 
 enum
 {
