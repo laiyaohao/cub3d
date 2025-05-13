@@ -29,16 +29,12 @@ void	calculate_textures(t_game *game, t_fray *f, int x, int y)
 	double fractional_y = f->floor_y - (double)cell_y;
 	t_x = (int)(fractional_x * (double)(game->t[F_T].w)) & (game->t[F_T].w - 1);
 	t_y = (int)(fractional_y * (double)(game->t[F_T].h)) & (game->t[F_T].h - 1);
-	// t_x = ((int)(game->t[F_T].w * (f->floor_x - cell_x))) & (game->t[F_T].w - 1);
-	// t_y = ((int)(game->t[F_T].w * (f->floor_y - cell_y))) & (game->t[F_T].w - 1);
 	f->floor_x += f->floor_sx;
 	f->floor_y += f->floor_sy;
-	// floor texture
 	t_offset = t_y * game->t[F_T].line_len + t_x * (game->t[F_T].bpp / 8);
 	f->color = *(unsigned int *)(game->t[F_T].data + t_offset);
 	f->img_offset = y * game->img.line_len + x * (game->img.bpp / 8);
 	*(unsigned int *)(game->img.data + f->img_offset) = f->color;
-	// ceiling texture
 	t_offset = t_y * game->t[C_T].line_len + t_x * (game->t[C_T].bpp / 8);
 	f->color = *(unsigned int *)(game->t[C_T].data + t_offset);
 	f->ceiling_y = S_HEIGHT - y - 1;
