@@ -3,7 +3,7 @@
 void	ray_pos(t_game *game, t_wray *w, int x)
 {
 	// calculate ray position and direction
-	w->camera_x = 2.0 * (double)x / (double)S_WIDTH - 1;
+	w->camera_x = 1.0 - 2.0 * (double)x / (double)S_WIDTH;
 	w->ray_dx = game->p.d_x + game->p.plane_x * w->camera_x;
 	w->ray_dy = game->p.d_y + game->p.plane_y * w->camera_x;
 	// which box of the map the player is in

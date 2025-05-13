@@ -2,10 +2,10 @@
 
 void	calculate_fval(t_game *game, t_fray *f, int y)
 {
-	f->ray_dx0 = game->p.d_x - game->p.plane_x;
-	f->ray_dy0 = game->p.d_y - game->p.plane_y;
-	f->ray_dx1 = game->p.d_x + game->p.plane_x;
-	f->ray_dy1 = game->p.d_y + game->p.plane_y;
+	f->ray_dx0 = game->p.d_x + game->p.plane_x;
+	f->ray_dy0 = game->p.d_y + game->p.plane_y;
+	f->ray_dx1 = game->p.d_x - game->p.plane_x;
+	f->ray_dy1 = game->p.d_y - game->p.plane_y;
 	f->pos = y - S_HEIGHT / 2;
 	f->pos_z = 0.5 * S_HEIGHT;
 	f->row_d = f->pos_z / f->pos;

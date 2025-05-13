@@ -28,6 +28,6 @@ void    init(t_game *game)
     //     i++;
     // }
     game->t_path[T_COUNT] = NULL;
-    game->p.p_x = 11;
-	game->p.p_y = 4;
+    game->p.p_x = 10.5;
+	game->p.p_y = 3.5;
 }

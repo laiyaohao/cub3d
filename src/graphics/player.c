@@ -12,8 +12,8 @@ void	move_player(double *new_x, double *new_y, t_game *game,
 	}
 	if (game->input.move_left)
 	{
-		*new_x -= game->p.plane_x * move_speed;
-		*new_y -= game->p.plane_y * move_speed;
+		*new_x += game->p.plane_x * move_speed;
+		*new_y += game->p.plane_y * move_speed;
 	}
 	if (game->input.move_down)
 	{
@@ -22,8 +22,8 @@ void	move_player(double *new_x, double *new_y, t_game *game,
 	}
 	if (game->input.move_right)
 	{
-		*new_x += game->p.plane_x * move_speed;
-		*new_y += game->p.plane_y * move_speed;
+		*new_x -= game->p.plane_x * move_speed;
+		*new_y -= game->p.plane_y * move_speed;
 	}
 }
 
@@ -62,7 +62,7 @@ void	process_rotation(t_game *game)
 
 	rot_speed = 0.007;
 	if (game->input.rot_left)
-		rotate_player(game, rot_speed);
-	if (game->input.rot_right)
 		rotate_player(game, -rot_speed);
+	if (game->input.rot_right)
+		rotate_player(game, rot_speed);
 }
