@@ -36,7 +36,7 @@ MAP_FILENAMES := map_utils.c parse_map.c
 MAP_FILES := ${addprefix ${MAP_FOLDER}, ${MAP_FILENAMES}}
 
 UTILS_FOLDER := ${addprefix ${SRC_FOLDER}, /utils/}
-UTILS_FILENAMES := strcjoin.c cleanup.c
+UTILS_FILENAMES := strcjoin.c cleanup.c pixel_put.c
 UTILS_FILES := ${addprefix ${UTILS_FOLDER}, ${UTILS_FILENAMES}}
 
 SRC_FILES := ${MAIN_FILES} ${GRAPHICS_FILES} ${INIT_FILES} ${MAP_FILES} ${UTILS_FILES}
@@ -48,7 +48,7 @@ BONUS_NAME := cub3D_bonus
 B_SRC_FOLDER := bonus
 
 B_GRAPHICS_FOLDER := ${addprefix ${B_SRC_FOLDER}, /graphics/}
-B_GRAPHICS_FILENAMES := b_game.c b_controls.c b_player.c b_images.c b_floor_render.c b_wall_render.c b_wall_texture.c
+B_GRAPHICS_FILENAMES := b_game.c b_controls.c b_player.c b_images.c b_floor_render.c b_wall_render.c b_wall_texture.c b_minimap.c
 B_GRAPHICS_FILES := ${addprefix ${B_GRAPHICS_FOLDER}, ${B_GRAPHICS_FILENAMES}}
 
 BONUS_SRC := ${MAIN_FILES} ${B_GRAPHICS_FILES} ${INIT_FILES} ${MAP_FILES} ${UTILS_FILES}

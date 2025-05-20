@@ -23,6 +23,10 @@
 # define KEY_ESC 65307
 # define S_HEIGHT 1024
 # define S_WIDTH 1280
+# define MM_HEIGHT 150
+# define MM_WIDTH 150
+# define MM_SCALE 10
+# define MM_RADIUS (MM_WIDTH / (2 * MM_SCALE))
 
 enum
 {
@@ -178,7 +182,9 @@ int					key_up(int key, t_game *game);
 int					key_down(int key, t_game *game);
 void				process_movement(t_game *game);
 void				process_rotation(t_game *game);
+void    			draw_minimap(t_game *game);
 void				strcjoin(int c, char **res);
+void    			pixel_put(t_game *game, int x, int y, int color);
 void				cleanup(t_game *game);
 
 #endif

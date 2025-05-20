@@ -6,6 +6,7 @@ int	run_game(t_game *game)
 	process_movement(game);
 	render_floor(game);
 	render_wall(game);
+	draw_minimap(game);
 	mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.mlx_win,
 		game->img.img_ptr, 0, 0);
 	return (0);
