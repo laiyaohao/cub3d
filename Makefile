@@ -23,15 +23,23 @@ MAIN_FOLDER := ${addprefix ${SRC_FOLDER}, /main/}
 MAIN_FILENAMES := main.c
 MAIN_FILES := ${addprefix ${MAIN_FOLDER}, ${MAIN_FILENAMES}}
 
+GRAPHICS_FOLDER := ${addprefix ${SRC_FOLDER}, /graphics/}
+GRAPHICS_FILENAMES := game.c controls.c player.c images.c floor_render.c wall_render.c wall_texture.c
+GRAPHICS_FILES := ${addprefix ${GRAPHICS_FOLDER}, ${GRAPHICS_FILENAMES}}
+
 INIT_FOLDER := ${addprefix ${SRC_FOLDER}, /init/}
 INIT_FILENAMES := init.c
 INIT_FILES := ${addprefix ${INIT_FOLDER}, ${INIT_FILENAMES}}
 
-GRAPHICS_FOLDER := ${addprefix ${SRC_FOLDER}, /graphics/}
-GRAPHICS_FILENAMES := window.c raycasting.c
-GRAPHICS_FILES := ${addprefix ${GRAPHICS_FOLDER}, ${GRAPHICS_FILENAMES}}
+MAP_FOLDER := ${addprefix ${SRC_FOLDER}, /map/}
+MAP_FILENAMES := map_utils.c parse_map.c
+MAP_FILES := ${addprefix ${MAP_FOLDER}, ${MAP_FILENAMES}}
 
-SRC_FILES := ${MAIN_FILES}
+UTILS_FOLDER := ${addprefix ${SRC_FOLDER}, /utils/}
+UTILS_FILENAMES := strcjoin.c cleanup.c
+UTILS_FILES := ${addprefix ${UTILS_FOLDER}, ${UTILS_FILENAMES}}
+
+SRC_FILES := ${MAIN_FILES} ${GRAPHICS_FILES} ${INIT_FILES} ${MAP_FILES} ${UTILS_FILES}
 
 OBJS := ${SRC_FILES:.c=.o}
 
@@ -40,28 +48,34 @@ OBJS := ${SRC_FILES:.c=.o}
 all: ${LIBFT} ${MLX} ${NAME}
 
 clean:
-	@make -C ${LIBFT_FOLDER} clean
+	@echo "Cleaning object files.."
+	@make -s -C ${LIBFT_FOLDER} clean > /dev/null 2>&1
+	@
 	@if [ -d ${MLX_FOLDER} ]; then \
 		echo "Cleaning ${MLX_FOLDER}..."; \
-		make -C ${MLX_FOLDER} clean; \
+		make -s -C ${MLX_FOLDER} clean > /dev/null 2>&1; \
 	fi
-	rm -f ${OBJS}
+	@rm -f ${OBJS}
+
 
 fclean: clean
-	@make -C ${LIBFT_FOLDER} fclean
+	@echo "Removing executable and MLX.."
+	@make -s -C ${LIBFT_FOLDER} fclean
+	@
 	@if [ -d ${MLX_FOLDER} ]; then \
 		echo "Removing ${MLX_FOLDER}..."; \
 		rm -rf ${MLX_FOLDER}; \
 	fi
-	rm -f ${NAME}
+	@rm -f ${NAME}
 
 re: fclean all
 
 
 # Build libft library
 ${LIBFT}:
-	make -C ${LIBFT_FOLDER} all
-	make -C ${LIBFT_FOLDER} bonus
+	@echo "Building libft.."
+	@make -s -C ${LIBFT_FOLDER} all
+	@make -s -C ${LIBFT_FOLDER} bonus
 
 
 # Build MLX library (Clone if the folder does not exist)
@@ -69,8 +83,8 @@ ${MLX}:
 	@if [ ! -d ${MLX_FOLDER} ] || [ ! -f ${MLX} ]; then \
 		echo "MLX not found. Cloning and building..."; \
 		rm -rf ${MLX_FOLDER}; \
-		git clone ${MLX_URL} ${MLX_FOLDER}; \
-		make -C ${MLX_FOLDER}; \
+		git clone ${MLX_URL} ${MLX_FOLDER} > /dev/null 2>&1; \
+		make -s -C ${MLX_FOLDER} > /dev/null 2>&1; \
 	else \
 		echo "MLX already exists. Skipping..."; \
 	fi
@@ -78,11 +92,13 @@ ${MLX}:
 
 # Build executable program (cub3D)
 ${NAME}: ${OBJS}
-	${CC} ${CFLAGS} ${OBJS} ${LIBFT} -L${MLX_FOLDER} ${MLXFLAGS} -o $@
+	@echo "Linking ${NAME}.."
+	@${CC} ${CFLAGS} ${OBJS} ${LIBFT} -L${MLX_FOLDER} ${MLXFLAGS} -o $@ -lm
 
 
 # Object file compilation rule
 %.o: %.c
-	${CC} ${CFLAGS} -c $< -o $@
+	@echo "Compiling $<.."
+	@${CC} ${CFLAGS} -c $< -o $@
 
 .PHONY: all clean fclean re

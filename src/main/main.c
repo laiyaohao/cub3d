@@ -3,8 +3,6 @@
 int main(int argc, char **argv)
 {
     t_game      game;
-    t_mlx       mlx;
-    t_player    p;
 
     if (argc != 2)
     {
@@ -13,12 +11,10 @@ int main(int argc, char **argv)
     }
     else
     {
-        printf("Game Start\n");
-        init(argv, &game, &p, &mlx); // initialise the structs we use
-        check_file(); // check the file extension as well as permission 
-        parse_map(); // check the map if it is valid, then store it in the game struct as well as the player position and direction
-        game_start(); // render the map via raycasting and start the loop
-        free_all(); // cleanup
+        ft_memset(&game, 0, sizeof(t_game));
+        init(&game); // initialise values which should be obtained from parsing the map
+        parse_map(argv, &game);
+        game_start(&game);
         return (0);
     }
 }
