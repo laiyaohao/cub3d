@@ -60,7 +60,7 @@ void	process_rotation(t_game *game)
 {
 	double	rot_speed;
 
-	rot_speed = 0.007;
+	rot_speed = 0.005;
 	if (game->input.rot_left)
 		rotate_player(game, -rot_speed);
 	if (game->input.rot_right)
