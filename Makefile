@@ -43,9 +43,22 @@ SRC_FILES := ${MAIN_FILES} ${GRAPHICS_FILES} ${INIT_FILES} ${MAP_FILES} ${UTILS_
 
 OBJS := ${SRC_FILES:.c=.o}
 
+# Bonus Program folder and files
+BONUS_NAME := cub3D_bonus
+B_SRC_FOLDER := bonus
+
+B_GRAPHICS_FOLDER := ${addprefix ${B_SRC_FOLDER}, /graphics/}
+B_GRAPHICS_FILENAMES := b_game.c b_controls.c b_player.c b_images.c b_floor_render.c b_wall_render.c b_wall_texture.c
+B_GRAPHICS_FILES := ${addprefix ${B_GRAPHICS_FOLDER}, ${B_GRAPHICS_FILENAMES}}
+
+BONUS_SRC := ${MAIN_FILES} ${B_GRAPHICS_FILES} ${INIT_FILES} ${MAP_FILES} ${UTILS_FILES}
+
+BONUS_OBJS := ${BONUS_SRC:.c=.o}
 
 # Rules
 all: ${LIBFT} ${MLX} ${NAME}
+
+bonus: ${LIBFT} ${MLX} ${BONUS_NAME}
 
 clean:
 	@echo "Cleaning object files.."
@@ -55,7 +68,7 @@ clean:
 		echo "Cleaning ${MLX_FOLDER}..."; \
 		make -s -C ${MLX_FOLDER} clean > /dev/null 2>&1; \
 	fi
-	@rm -f ${OBJS}
+	@rm -f ${OBJS} ${BONUS_OBJS}
 
 
 fclean: clean
@@ -66,7 +79,7 @@ fclean: clean
 		echo "Removing ${MLX_FOLDER}..."; \
 		rm -rf ${MLX_FOLDER}; \
 	fi
-	@rm -f ${NAME}
+	@rm -f ${NAME} ${BONUS_NAME}
 
 re: fclean all
 
@@ -95,10 +108,15 @@ ${NAME}: ${OBJS}
 	@echo "Linking ${NAME}.."
 	@${CC} ${CFLAGS} ${OBJS} ${LIBFT} -L${MLX_FOLDER} ${MLXFLAGS} -o $@ -lm
 
+# Build executable program (bonus)
+${BONUS_NAME}: ${BONUS_OBJS}
+	@echo "Linking ${BONUS_NAME}.."
+	@${CC} ${CFLAGS} ${BONUS_OBJS} ${LIBFT} -L${MLX_FOLDER} ${MLXFLAGS} -o $@ -lm
+
 
 # Object file compilation rule
 %.o: %.c
 	@echo "Compiling $<.."
 	@${CC} ${CFLAGS} -c $< -o $@
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re
