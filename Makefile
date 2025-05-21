@@ -48,7 +48,7 @@ BONUS_NAME := cub3D_bonus
 B_SRC_FOLDER := bonus
 
 B_GRAPHICS_FOLDER := ${addprefix ${B_SRC_FOLDER}, /graphics/}
-B_GRAPHICS_FILENAMES := b_game.c b_controls.c b_player.c b_images.c b_floor_render.c b_wall_render.c b_wall_texture.c b_minimap.c
+B_GRAPHICS_FILENAMES := b_game.c b_controls.c b_player.c b_images.c b_floor_render.c b_wall_render.c b_wall_texture.c b_minimap.c b_mouse.c
 B_GRAPHICS_FILES := ${addprefix ${B_GRAPHICS_FOLDER}, ${B_GRAPHICS_FILENAMES}}
 
 BONUS_SRC := ${MAIN_FILES} ${B_GRAPHICS_FILES} ${INIT_FILES} ${MAP_FILES} ${UTILS_FILES}

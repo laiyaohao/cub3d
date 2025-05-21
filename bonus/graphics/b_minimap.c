@@ -33,12 +33,12 @@ void	draw_minimap(t_game *game)
 	int				mm_y;
 	unsigned int	color;
 
-	y = (int)(game->p.p_y - MM_RADIUS);
-	y_end = (int)(game->p.p_y + MM_RADIUS);
+	y = floorf(game->p.p_y - MM_RADIUS);
+	y_end = floorf(game->p.p_y + MM_RADIUS);
 	while (y <= y_end)
 	{
-        x = (int)(game->p.p_x - MM_RADIUS);
-        x_end = (int)(game->p.p_x + MM_RADIUS);
+        x = floorf(game->p.p_x - MM_RADIUS);
+        x_end = floorf(game->p.p_x + MM_RADIUS);
         while (x <= x_end)
 		{
 			if (x >= 0 && x < game->max_w && y >= 0 && y < game->max_h)
@@ -55,5 +55,4 @@ void	draw_minimap(t_game *game)
 		}
 		y++;
 	}
-	draw_to_img(game, MM_WIDTH / 2 - 2, MM_HEIGHT / 2 - 2, 0xFF0000);
 }

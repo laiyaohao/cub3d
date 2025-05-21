@@ -36,6 +36,7 @@ void	game_start(t_game *game)
 	mlx_hook(game->mlx.mlx_win, keydown, 1L << 0, key_down, game);
 	mlx_hook(game->mlx.mlx_win, keyup, 1L << 1, key_up, game);
 	mlx_hook(game->mlx.mlx_win, destroy, 1L << 17, exit_game, game);
+	mlx_hook(game->mlx.mlx_win, mousemove, 1L << 6, mouse_move, game);
 	mlx_loop_hook(game->mlx.mlx_ptr, run_game, game);
 	mlx_loop(game->mlx.mlx_ptr);
 	mlx_loop_end(game->mlx.mlx_ptr);

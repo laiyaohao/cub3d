@@ -148,6 +148,8 @@ typedef struct s_wray
 
 typedef struct s_game
 {
+	int				prev_mouse_x;
+	int				first_mouse;
 	int				map_fd;
 	int				max_w;
 	int				max_h;
@@ -180,8 +182,10 @@ void				render_wall(t_game *game);
 void				render_floor(t_game *game);
 int					key_up(int key, t_game *game);
 int					key_down(int key, t_game *game);
+int 				mouse_move(int x, int y, t_game *game);
 void				process_movement(t_game *game);
 void				process_rotation(t_game *game);
+void				rotate_player(t_game *game, double rot_speed);
 void    			draw_minimap(t_game *game);
 void				strcjoin(int c, char **res);
 void    			pixel_put(t_game *game, int x, int y, int color);
