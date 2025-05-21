@@ -20,6 +20,7 @@
 # define KEY_D 100
 # define KEY_S 115
 # define KEY_W 119
+# define KEY_SPACE 32
 # define KEY_ESC 65307
 # define S_HEIGHT 1024
 # define S_WIDTH 1280
@@ -77,9 +78,12 @@ typedef struct s_mlx
 	void			*mlx_win;
 }					t_mlx;
 
-typedef struct s_ray
+typedef struct s_door
 {
-}					t_ray;
+	int				state;
+	double			map_x;
+	double			map_y;
+}					t_door;
 
 typedef struct s_texture
 {
@@ -153,6 +157,7 @@ typedef struct s_game
 	int				map_fd;
 	int				max_w;
 	int				max_h;
+	int				d_count;
 	char			**map;
 	char			**t_path;
 	double			camera_x;
@@ -161,6 +166,7 @@ typedef struct s_game
 	t_player		p;
 	t_input			input;
 	t_mlx			mlx;
+	t_door			**doors;
 	t_texture		t[T_COUNT];
 	t_img			img;
 	t_fray			floor_ray;
@@ -177,18 +183,19 @@ int					exit_game(t_game *game);
 void				process_textures(t_game *game);
 void				select_texture(t_game *game, t_wray *w, t_texture **tex);
 void				texture_value(t_game *game, t_wray *w, t_texture *tex);
-void				cast_texture(t_game *game, t_wray *w, int x, t_texture *tex);
+void				cast_texture(t_game *game, t_wray *w, int x,
+						t_texture *tex);
 void				render_wall(t_game *game);
 void				render_floor(t_game *game);
 int					key_up(int key, t_game *game);
 int					key_down(int key, t_game *game);
-int 				mouse_move(int x, int y, t_game *game);
+int					mouse_move(int x, int y, t_game *game);
 void				process_movement(t_game *game);
 void				process_rotation(t_game *game);
 void				rotate_player(t_game *game, double rot_speed);
-void    			draw_minimap(t_game *game);
+void				draw_minimap(t_game *game);
 void				strcjoin(int c, char **res);
-void    			pixel_put(t_game *game, int x, int y, int color);
+void				pixel_put(t_game *game, int x, int y, int color);
 void				cleanup(t_game *game);
 
 #endif

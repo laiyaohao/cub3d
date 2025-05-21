@@ -33,6 +33,7 @@ void	game_start(t_game *game)
 {
 	create_window(game);
 	process_textures(game);
+	count_doors(game);
 	mlx_hook(game->mlx.mlx_win, keydown, 1L << 0, key_down, game);
 	mlx_hook(game->mlx.mlx_win, keyup, 1L << 1, key_up, game);
 	mlx_hook(game->mlx.mlx_win, destroy, 1L << 17, exit_game, game);

@@ -23,4 +23,6 @@ void    cleanup(t_game *game)
         free_2d((void **)game->map);
     if (game->t_path)
         free_2d((void **)game->t_path);
+    if (game->doors)
+        free_2d((void **)game->doors);
 }
