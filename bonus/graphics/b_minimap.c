@@ -1,58 +1,62 @@
 #include "../../inc/cub3D.h"
 
-void	draw_to_img(t_game *game, int x, int y, int color)
+void	minimap_bg(t_game *game)
 {
-	int	i;
-	int	j;
-	int	px;
-	int	py;
+	int	x;
+	int	y;
 
-	i = 0;
-    while (i < MM_SCALE)
+	y = 0;
+	while (y < MM_PX)
 	{
-		j = 0;
-		while (j < MM_SCALE)
+		x = 0;
+		while (x < MM_PX)
 		{
-			px = x + j;
-			py = y + i;
-			if (px >= 0 && px < S_WIDTH && py >= 0 && py < S_HEIGHT)
-				pixel_put(game, px, py, color);
-			j++;
+			draw_to_img(game, MM_OFFSET + x, MM_OFFSET + y, 0x000000);
+			x++;
 		}
-		i++;
+		y++;
+	}
+}
+
+void	draw_tiles(t_game *game, int x, int y)
+{
+	int				map_x;
+	int				map_y;
+	int				mm_x;
+	int				mm_y;
+	unsigned int	color;
+
+	map_x = (int)(game->p.p_x) + x;
+	map_y = (int)(game->p.p_y) + y;
+	if (map_x >= 0 && map_x < game->max_w && map_y >= 0 && map_y < game->max_h)
+	{
+		mm_x = (x + MM_RADIUS) * MM_SCALE - (game->p.p_x - (int)game->p.p_x);
+		mm_y = (y + MM_RADIUS) * MM_SCALE - (game->p.p_y - (int)game->p.p_y);
+		if (game->map[map_y][map_x] == '1')
+			color = 0xFFFFFF;
+		else
+			color = 0x444444;
+		draw_to_img(game, MM_OFFSET + mm_x, MM_OFFSET + mm_y, color);
 	}
 }
 
 void	draw_minimap(t_game *game)
 {
-	int				x;
-	int				x_end;
-	int				y;
-	int				y_end;
-	int				mm_x;
-	int				mm_y;
-	unsigned int	color;
+	int	x;
+	int	y;
 
-	y = floorf(game->p.p_y - MM_RADIUS);
-	y_end = floorf(game->p.p_y + MM_RADIUS);
-	while (y <= y_end)
+	minimap_bg(game);
+	y = -MM_RADIUS;
+	while (y <= MM_RADIUS)
 	{
-        x = floorf(game->p.p_x - MM_RADIUS);
-        x_end = floorf(game->p.p_x + MM_RADIUS);
-        while (x <= x_end)
+		x = -MM_RADIUS;
+		while (x <= MM_RADIUS)
 		{
-			if (x >= 0 && x < game->max_w && y >= 0 && y < game->max_h)
-			{
-				mm_x = (x - game->p.p_x + MM_RADIUS) * MM_SCALE;
-				mm_y = (y - game->p.p_y + MM_RADIUS) * MM_SCALE;
-				if (game->map[y][x] == '1')
-					color = 0xFFFFFF;
-				else
-					color = 0x444444;
-				draw_to_img(game, mm_x, mm_y, color);
-			}
+			draw_tiles(game, x, y);
 			x++;
 		}
 		y++;
 	}
+	draw_to_img(game, MM_OFFSET + MM_RADIUS * MM_SCALE, MM_OFFSET + MM_RADIUS
+		* MM_SCALE, 0xFF0000);
 }

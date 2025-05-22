@@ -33,7 +33,7 @@ void	process_movement(t_game *game)
 	double	new_y;
 	double	move_speed;
 
-	move_speed = 0.02;
+	move_speed = 0.03;
 	move_player(&new_x, &new_y, game, move_speed);
 	if (game->map[(int)game->p.p_y][(int)new_x] != '1')
 		game->p.p_x = new_x;

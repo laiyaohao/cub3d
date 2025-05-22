@@ -24,10 +24,11 @@
 # define KEY_ESC 65307
 # define S_HEIGHT 1024
 # define S_WIDTH 1280
-# define MM_HEIGHT 150
-# define MM_WIDTH 150
-# define MM_SCALE 10
-# define MM_RADIUS (MM_WIDTH / (2 * MM_SCALE))
+# define MM_RADIUS 5
+# define MM_SCALE 8
+# define MM_SIZE (2 * MM_RADIUS + 1)
+# define MM_PX (MM_SIZE * MM_SCALE)
+# define MM_OFFSET 10
 
 enum
 {
@@ -181,6 +182,7 @@ void				parse_map(char **argv, t_game *game);
 void				game_start(t_game *game);
 int					exit_game(t_game *game);
 void				process_textures(t_game *game);
+void    			add_doors(t_game *game);
 void				select_texture(t_game *game, t_wray *w, t_texture **tex);
 void				texture_value(t_game *game, t_wray *w, t_texture *tex);
 void				cast_texture(t_game *game, t_wray *w, int x,
@@ -193,9 +195,11 @@ int					mouse_move(int x, int y, t_game *game);
 void				process_movement(t_game *game);
 void				process_rotation(t_game *game);
 void				rotate_player(t_game *game, double rot_speed);
+void    			something_door(t_game *game);
 void				draw_minimap(t_game *game);
-void				strcjoin(int c, char **res);
-void				pixel_put(t_game *game, int x, int y, int color);
 void				cleanup(t_game *game);
+void				draw_to_img(t_game *game, int x, int y, int color);
+void				pixel_put(t_game *game, int x, int y, int color);
+void				strcjoin(int c, char **res);
 
 #endif

@@ -15,20 +15,30 @@ void	calculate_fval(t_game *game, t_fray *f, int y)
 	f->floor_y = game->p.p_y + f->row_d * f->ray_dy0;
 }
 
-void	calculate_textures(t_game *game, t_fray *f, int x, int y)
+void	texture_values(t_game *game, t_fray *f, int *t_x, int *t_y)
 {
-	int				cell_x;
-	int				cell_y;
-	int				t_x;
-	int				t_y;
-	int				t_offset;
+	int		cell_x;
+	int		cell_y;
+	double	fractional_x;
+	double	fractional_y;
 
 	cell_x = (int)f->floor_x;
 	cell_y = (int)f->floor_y;
-	double fractional_x = f->floor_x - (double)cell_x;
-	double fractional_y = f->floor_y - (double)cell_y;
-	t_x = (int)(fractional_x * (double)(game->t[F_T].w)) & (game->t[F_T].w - 1);
-	t_y = (int)(fractional_y * (double)(game->t[F_T].h)) & (game->t[F_T].h - 1);
+	fractional_x = f->floor_x - (double)cell_x;
+	fractional_y = f->floor_y - (double)cell_y;
+	*t_x = (int)(fractional_x * (double)(game->t[F_T].w)) & (game->t[F_T].w
+			- 1);
+	*t_y = (int)(fractional_y * (double)(game->t[F_T].h)) & (game->t[F_T].h
+			- 1);
+}
+
+void	calculate_textures(t_game *game, t_fray *f, int x, int y)
+{
+	int	t_x;
+	int	t_y;
+	int	t_offset;
+
+	texture_values(game, f, &t_x, &t_y);
 	f->floor_x += f->floor_sx;
 	f->floor_y += f->floor_sy;
 	t_offset = t_y * game->t[F_T].line_len + t_x * (game->t[F_T].bpp / 8);
@@ -44,9 +54,9 @@ void	calculate_textures(t_game *game, t_fray *f, int x, int y)
 
 void	render_floor(t_game *game)
 {
-	int				x;
-	int				y;
-	t_fray			f;
+	int		x;
+	int		y;
+	t_fray	f;
 
 	f = game->floor_ray;
 	y = 0;
