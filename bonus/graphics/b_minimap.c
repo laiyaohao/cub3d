@@ -6,10 +6,10 @@ void	minimap_bg(t_game *game)
 	int	y;
 
 	y = 0;
-	while (y < MM_PX)
+	while (y < MM_PX - 8)
 	{
 		x = 0;
-		while (x < MM_PX)
+		while (x < MM_PX - 8)
 		{
 			draw_to_img(game, MM_OFFSET + x, MM_OFFSET + y, 0x000000);
 			x++;

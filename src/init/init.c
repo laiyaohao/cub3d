@@ -16,6 +16,7 @@ void    init(t_game *game)
     game->t_path[W_T] = ft_strdup("./textures/West.xpm");
     game->t_path[F_T] = ft_strdup("./textures/Floor.xpm");
     game->t_path[C_T] = ft_strdup("./textures/Ceiling.xpm");
+    game->t_path[D_T] = ft_strdup("./textures/Door.xpm");
     game->first_mouse = 1;
     game->t_path[T_COUNT] = NULL;
     game->p.p_x = 10.5;

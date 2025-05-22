@@ -65,6 +65,8 @@ void	dda(t_game *game, t_wray *w)
 		// check if ray has hit a wall
 		if (game->map[w->map_y][w->map_x] == '1')
 			w->hit = 1;
+		if (game->map[w->map_y][w->map_x] == 'D')
+			door_hit(game, w);
 	}
 }
 

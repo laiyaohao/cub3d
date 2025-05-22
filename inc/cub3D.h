@@ -49,6 +49,7 @@ enum
 	W_T,
 	F_T,
 	C_T,
+	D_T,
 	T_COUNT
 };
 
@@ -82,8 +83,8 @@ typedef struct s_mlx
 typedef struct s_door
 {
 	int				state;
-	double			map_x;
-	double			map_y;
+	int				map_x;
+	int				map_y;
 }					t_door;
 
 typedef struct s_texture
@@ -182,7 +183,7 @@ void				parse_map(char **argv, t_game *game);
 void				game_start(t_game *game);
 int					exit_game(t_game *game);
 void				process_textures(t_game *game);
-void    			add_doors(t_game *game);
+void				add_doors(t_game *game);
 void				select_texture(t_game *game, t_wray *w, t_texture **tex);
 void				texture_value(t_game *game, t_wray *w, t_texture *tex);
 void				cast_texture(t_game *game, t_wray *w, int x,
@@ -195,7 +196,8 @@ int					mouse_move(int x, int y, t_game *game);
 void				process_movement(t_game *game);
 void				process_rotation(t_game *game);
 void				rotate_player(t_game *game, double rot_speed);
-void    			something_door(t_game *game);
+void				something_door(t_game *game);
+void				door_hit(t_game *game, t_wray *w);
 void				draw_minimap(t_game *game);
 void				cleanup(t_game *game);
 void				draw_to_img(t_game *game, int x, int y, int color);
