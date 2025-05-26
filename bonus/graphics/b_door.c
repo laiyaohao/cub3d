@@ -71,16 +71,16 @@ void	add_doors(t_game *game)
 
 void	something_door(t_game *game)
 {
-	int		i;
-	double	x_diff;
-	double	y_diff;
+	int	i;
+	int	x_diff;
+	int	y_diff;
 
 	i = 0;
 	while (game->doors[i])
 	{
-		x_diff = game->p.p_x - game->doors[i]->map_x;
-		y_diff = game->p.p_y - game->doors[i]->map_y;
-		if ((x_diff <= 1.0 && x_diff >= -1.0) || (y_diff <= 1.0 && y_diff >= -1.0))
+		x_diff = abs(game->doors[i]->map_x - (int)game->p.p_x);
+		y_diff = abs(game->doors[i]->map_y - (int)game->p.p_y);
+		if ((x_diff <= 2 && y_diff == 0) || (x_diff == 0 && y_diff <= 2))
 		{
 			if (game->doors[i]->state)
 				game->doors[i]->state = 0;

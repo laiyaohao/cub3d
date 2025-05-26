@@ -53,20 +53,24 @@ void	process_movement(t_game *game)
 
 	move_speed = 0.03;
 	move_player(&new_x, &new_y, game, move_speed);
-	if (game->map[(int)game->p.p_y][(int)new_x] != '1')
-		game->p.p_x = new_x;
-	if (game->map[(int)new_y][(int)game->p.p_x] != '1')
-		game->p.p_y = new_y;
+	if (game->map[(int)game->p.p_y][(int)new_x] == '1')
+		return ;
 	if (game->map[(int)game->p.p_y][(int)new_x] == 'D')
 	{
-		if (check_door(game, (int)new_x, (int)game->p.p_y))
+		if (check_door(game, new_x, (int)game->p.p_y))
 			game->p.p_x = new_x;
 	}
+	else
+		game->p.p_x = new_x;
+	if (game->map[(int)new_y][(int)game->p.p_x] == '1')
+		return ;
 	if (game->map[(int)new_y][(int)game->p.p_x] == 'D')
 	{
-		if (check_door(game, (int)game->p.p_x, (int)new_y))
+		if (check_door(game, (int)game->p.p_x, new_y))
 			game->p.p_y = new_y;
 	}
+	else
+		game->p.p_y = new_y;
 }
 
 void	rotate_player(t_game *game, double rot_speed)
