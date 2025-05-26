@@ -2,6 +2,14 @@
 
 int	run_game(t_game *game)
 {
+	int64_t l_time;
+    int64_t c_time;
+    int64_t d_time;
+
+	c_time = get_time();
+	d_time = c_time - l_time;
+	l_time = c_time;
+	update_sprite(game, d_time);
 	process_rotation(game);
 	process_movement(game);
 	render_floor(game);

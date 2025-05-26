@@ -29,6 +29,7 @@
 # define MM_SIZE (2 * MM_RADIUS + 1)
 # define MM_PX (MM_SIZE * MM_SCALE)
 # define MM_OFFSET 10
+# define FRAMES 5
 
 enum
 {
@@ -86,6 +87,16 @@ typedef struct s_door
 	int				map_x;
 	int				map_y;
 }					t_door;
+
+typedef struct s_sprite
+{
+	t_img			i[FRAMES];
+	int				c_frame;
+	double			timer;
+	double			frame_duration;
+	double			x;
+	double			y;
+}					t_sprite;
 
 typedef struct s_texture
 {
@@ -173,6 +184,7 @@ typedef struct s_game
 	t_img			img;
 	t_fray			floor_ray;
 	t_wray			wall_ray;
+	t_sprite		*sprite;
 }					t_game;
 
 int					main(int argc, char **argv);
@@ -193,12 +205,15 @@ void				render_floor(t_game *game);
 int					key_up(int key, t_game *game);
 int					key_down(int key, t_game *game);
 int					mouse_move(int x, int y, t_game *game);
+int64_t				get_time(void);
 void				process_movement(t_game *game);
 void				process_rotation(t_game *game);
 void				rotate_player(t_game *game, double rot_speed);
 void				something_door(t_game *game);
 void				door_hit(t_game *game, t_wray *w);
 void				draw_minimap(t_game *game);
+void    			update_sprite(t_game *game, double d_time);
+void				render_sprite(t_game *game);
 void				cleanup(t_game *game);
 void				draw_to_img(t_game *game, int x, int y, int color);
 void				pixel_put(t_game *game, int x, int y, int color);
