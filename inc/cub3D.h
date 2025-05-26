@@ -189,6 +189,7 @@ typedef struct s_game
 	int				d_count;
 	int64_t			l_time;
 	char			**map;
+	char			**map_file;
 	char			**t_path;
 	char			**s_path;
 	double			camera_x;
@@ -238,5 +239,9 @@ void				cleanup(t_game *game);
 void				draw_to_img(t_game *game, int x, int y, int color);
 void				pixel_put(t_game *game, int x, int y, int color);
 void				strcjoin(int c, char **res);
+void				check_f_str(t_game *game);
+int					store_color(t_game *game, int i, int *j, int tex);
+int					valid_map(t_game *game, int i);
+int				flood_fill(t_game *game, int x, int y, int **map);
 
 #endif

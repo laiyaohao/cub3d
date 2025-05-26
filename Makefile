@@ -32,7 +32,7 @@ INIT_FILENAMES := init.c
 INIT_FILES := ${addprefix ${INIT_FOLDER}, ${INIT_FILENAMES}}
 
 MAP_FOLDER := ${addprefix ${SRC_FOLDER}, /map/}
-MAP_FILENAMES := map_utils.c parse_map.c
+MAP_FILENAMES := map_utils.c parse_map.c file_struct.c storing.c flood_fill.c
 MAP_FILES := ${addprefix ${MAP_FOLDER}, ${MAP_FILENAMES}}
 
 UTILS_FOLDER := ${addprefix ${SRC_FOLDER}, /utils/}

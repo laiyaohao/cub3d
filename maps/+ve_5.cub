@@ -1,0 +1,15 @@
+NO ./assets/xpm/wall01.xpm
+SO ./assets/xpm/wall021.xpm
+EA ./assets/xpm/wall03.xpm
+WE ./assets/xpm/wall041.xpm
+
+F 255, 255, 0
+C 0, 42, 55
+
+111111111111
+100000000001
+101111111101
+101111111101
+101111111101
+1000000S0001
+111111111111

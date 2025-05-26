@@ -45,14 +45,7 @@ void	process_p(t_game *game, int c, int *count)
 
 void	check_c(int c, int *count, t_game *game)
 {
-	if (!ft_strchr("01NSEWD", c))
-	{
-		ft_putstr_fd("Error: Invalid character: ", 2);
-		ft_putchar_fd(c, 2);
-		ft_putstr_fd("\n", 2);
-		exit_game(game);
-	}
-	else if (ft_strchr("NSEW", c))
+	if (ft_strchr("NSEW", c))
 		process_p(game, c, count);
 }
 
@@ -67,6 +60,7 @@ void	check_arr(t_game *game)
 	while (game->map[i])
 	{
 		k = 0;
+		printf("game->map[i]: %s\n", game->map[i]);
 		while (game->map[i][k])
 		{
 			check_c(game->map[i][k], &count, game);
@@ -76,6 +70,7 @@ void	check_arr(t_game *game)
 	}
 	if (count != 1)
 	{
+		printf("count: %d\n", count);
 		ft_putstr_fd("Error: Include only 1 player in the map\n", 2);
 		exit_game(game);
 	}
@@ -102,15 +97,99 @@ void	get_w_h(t_game *game)
 	game->max_h = i;
 }
 
+void	find_player(t_game *game)
+{
+	int	i;
+	int	j;	
+
+	i = 0;
+	while (game->map[i])
+	{
+		j = 0;
+		while (game->map[i][j])
+		{
+			if (game->map[i][j] == 'N' || game->map[i][j] == 'S' ||
+				game->map[i][j] == 'E' || game->map[i][j] == 'W')
+			{
+				game->p.p_x = i;
+				game->p.p_y = j;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void	free_map(void **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i] != NULL)
+	{
+		free(map[i]);
+		map[i] = NULL;
+		i++;
+	}
+	free(map);
+}
+
+int	**copy_map(t_game *game)
+{
+  int	**copy;
+  int		i;
+
+  i = 0;
+  copy = ft_calloc((game->max_h + 1), sizeof(int *));
+  while (i < game->max_h)
+  {
+    copy[i] = ft_calloc(game->max_w + 1, sizeof(int));
+		if (!copy[i])
+		{
+			free_map((void **)copy);
+			exit_game(game);
+		}
+    i++;
+  }
+  copy[i] = NULL;
+  return (copy);
+}
+
 void	check_map(t_game *game)
 {
+	int is_sur;
+	int **map;
+
+	is_sur = 1;
 	get_w_h(game);
 	check_arr(game);
+	find_player(game);
+	int i = 0;
+	int j;
+	while (i < game->max_h)
+	{
+		j = 0;
+		while (j < game->max_w)
+		{
+			if (game->map[i][j] && game->map[i][j] != ' ' && game->map[i][j] != '1')
+			{
+				map = copy_map(game);
+				if (flood_fill(game, i, j, map) == 0)
+					is_sur = 0;
+				free_map((void **)map);
+			} 
+			j++;
+		}
+		i++;
+	}
+	if (!is_sur)
+		exit_game(game);
 }
 
 void	parse_map(char **argv, t_game *game)
 {
 	check_file(argv, game);
 	read_map(game);
+	check_f_str(game);
 	check_map(game);
 }

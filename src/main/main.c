@@ -14,7 +14,7 @@ int main(int argc, char **argv)
         ft_memset(&game, 0, sizeof(t_game));
         init(&game); // initialise values which should be obtained from parsing the map
         parse_map(argv, &game);
-        game_start(&game);
+        // game_start(&game);
         return (0);
     }
 }
