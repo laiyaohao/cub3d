@@ -6,6 +6,7 @@
 # include "../minilibx-linux/mlx.h"
 # include <fcntl.h>
 # include <math.h>
+# include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
@@ -29,7 +30,9 @@
 # define MM_SIZE (2 * MM_RADIUS + 1)
 # define MM_PX (MM_SIZE * MM_SCALE)
 # define MM_OFFSET 10
-# define FRAMES 5
+# define FRAMES 3
+# define SPRITE_WIDTH 64
+# define SPRITE_HEIGHT 64
 
 enum
 {
@@ -88,16 +91,6 @@ typedef struct s_door
 	int				map_y;
 }					t_door;
 
-typedef struct s_sprite
-{
-	t_img			i[FRAMES];
-	int				c_frame;
-	double			timer;
-	double			frame_duration;
-	double			x;
-	double			y;
-}					t_sprite;
-
 typedef struct s_texture
 {
 	void			*image;
@@ -117,6 +110,29 @@ typedef struct s_img
 	int				line_len;
 	int				endian;
 }					t_img;
+
+typedef struct s_sprite
+{
+	int				c_frame;
+	int				sprite_h;
+	int				sprite_w;
+	int             tex_x;
+    int             tex_y;
+	int             draw_x_start;
+    int             draw_x_end;
+    int             draw_y_start;
+    int             draw_y_end;
+    int             screen_x;
+	unsigned int    color;
+	double			x;
+	double			y;
+	double			sprite_x;
+	double			sprite_y;
+	double			trans_x;
+	double			trans_y;
+	double			inv_det;
+	t_img			img;
+}					t_sprite;
 
 typedef struct s_fray
 {
@@ -171,8 +187,10 @@ typedef struct s_game
 	int				max_w;
 	int				max_h;
 	int				d_count;
+	int64_t			l_time;
 	char			**map;
 	char			**t_path;
+	char			**s_path;
 	double			camera_x;
 	double			ray_dx;
 	double			ray_dy;
@@ -181,10 +199,11 @@ typedef struct s_game
 	t_mlx			mlx;
 	t_door			**doors;
 	t_texture		t[T_COUNT];
+	t_texture		s[FRAMES];
 	t_img			img;
 	t_fray			floor_ray;
 	t_wray			wall_ray;
-	t_sprite		*sprite;
+	t_sprite		sprite;
 }					t_game;
 
 int					main(int argc, char **argv);
@@ -195,6 +214,7 @@ void				parse_map(char **argv, t_game *game);
 void				game_start(t_game *game);
 int					exit_game(t_game *game);
 void				process_textures(t_game *game);
+void				process_sprite(t_game *game);
 void				add_doors(t_game *game);
 void				select_texture(t_game *game, t_wray *w, t_texture **tex);
 void				texture_value(t_game *game, t_wray *w, t_texture *tex);
@@ -212,7 +232,7 @@ void				rotate_player(t_game *game, double rot_speed);
 void				something_door(t_game *game);
 void				door_hit(t_game *game, t_wray *w);
 void				draw_minimap(t_game *game);
-void    			update_sprite(t_game *game, double d_time);
+void				update_sprite(t_game *game, double c_time);
 void				render_sprite(t_game *game);
 void				cleanup(t_game *game);
 void				draw_to_img(t_game *game, int x, int y, int color);

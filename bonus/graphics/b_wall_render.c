@@ -67,8 +67,6 @@ void	dda(t_game *game, t_wray *w)
 			w->hit = 1;
 		if (game->map[w->map_y][w->map_x] == 'D')
 			door_hit(game, w);
-		if (game->map[w->map_y][w->map_x] == 'S')
-			sprite(game, w);
 	}
 }
 

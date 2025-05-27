@@ -2,19 +2,13 @@
 
 int	run_game(t_game *game)
 {
-	int64_t l_time;
-    int64_t c_time;
-    int64_t d_time;
-
-	c_time = get_time();
-	d_time = c_time - l_time;
-	l_time = c_time;
-	update_sprite(game, d_time);
+	update_sprite(game, get_time());
 	process_rotation(game);
 	process_movement(game);
 	render_floor(game);
 	render_wall(game);
 	draw_minimap(game);
+	render_sprite(game);
 	mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.mlx_win,
 		game->img.img_ptr, 0, 0);
 	return (0);
@@ -41,6 +35,7 @@ void	game_start(t_game *game)
 {
 	create_window(game);
 	process_textures(game);
+	process_sprite(game);
 	add_doors(game);
 	mlx_hook(game->mlx.mlx_win, keydown, 1L << 0, key_down, game);
 	mlx_hook(game->mlx.mlx_win, keyup, 1L << 1, key_up, game);

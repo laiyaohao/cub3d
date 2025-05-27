@@ -22,3 +22,21 @@ void	process_textures(t_game *game)
 		i++;
 	}
 }
+
+void	process_sprite(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while(i < FRAMES)
+	{
+		game->s[i].image = mlx_xpm_file_to_image(game->mlx.mlx_ptr, game->s_path[i], &game->s[i].w, &game->s[i].h);
+		if (!game->s[i].image)
+		{
+			ft_putstr_fd("Error: Invalid texture file, please use a .xpm\n", 2);
+			exit_game(game);
+		}
+		game->s[i].data = mlx_get_data_addr(game->s[i].image, &game->s[i].bpp, &game->s[i].line_len, &game->s[i].endian);
+		i++;
+	}
+}
