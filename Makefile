@@ -36,7 +36,7 @@ MAP_FILENAMES := map_utils.c parse_map.c
 MAP_FILES := ${addprefix ${MAP_FOLDER}, ${MAP_FILENAMES}}
 
 UTILS_FOLDER := ${addprefix ${SRC_FOLDER}, /utils/}
-UTILS_FILENAMES := strcjoin.c cleanup.c pixel_put.c draw_to_img.c get_time.c
+UTILS_FILENAMES := strcjoin.c cleanup.c pixel_put.c draw_to_img.c get_time.c exit_game.c
 UTILS_FILES := ${addprefix ${UTILS_FOLDER}, ${UTILS_FILENAMES}}
 
 SRC_FILES := ${MAIN_FILES} ${GRAPHICS_FILES} ${INIT_FILES} ${MAP_FILES} ${UTILS_FILES}
