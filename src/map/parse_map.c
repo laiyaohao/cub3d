@@ -45,7 +45,7 @@ void	process_p(t_game *game, int c, int *count)
 
 void	check_c(int c, int *count, t_game *game)
 {
-	if (!ft_strchr("01NSEW", c))
+	if (!ft_strchr("01NSEWD", c))
 	{
 		ft_putstr_fd("Error: Invalid character: ", 2);
 		ft_putchar_fd(c, 2);

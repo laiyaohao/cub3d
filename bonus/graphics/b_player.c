@@ -27,17 +27,49 @@ void	move_player(double *new_x, double *new_y, t_game *game,
 	}
 }
 
+int	check_door(t_game *game, int x, int y)
+{
+	int	i;
+	int	x_diff;
+	int	y_diff;
+
+	i = 0;
+	while (game->doors[i])
+	{
+		x_diff = x - game->doors[i]->map_x;
+		y_diff = y - game->doors[i]->map_y;
+		if ((x_diff == 0 || y_diff == 0) && game->doors[i]->state)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 void	process_movement(t_game *game)
 {
 	double	new_x;
 	double	new_y;
 	double	move_speed;
 
-	move_speed = 0.015;
+	move_speed = 0.03;
 	move_player(&new_x, &new_y, game, move_speed);
-	if (game->map[(int)game->p.p_y][(int)new_x] != '1')
+	if (game->map[(int)game->p.p_y][(int)new_x] == '1')
+		return ;
+	if (game->map[(int)game->p.p_y][(int)new_x] == 'D')
+	{
+		if (check_door(game, new_x, (int)game->p.p_y))
+			game->p.p_x = new_x;
+	}
+	else
 		game->p.p_x = new_x;
-	if (game->map[(int)new_y][(int)game->p.p_x] != '1')
+	if (game->map[(int)new_y][(int)game->p.p_x] == '1')
+		return ;
+	if (game->map[(int)new_y][(int)game->p.p_x] == 'D')
+	{
+		if (check_door(game, (int)game->p.p_x, new_y))
+			game->p.p_y = new_y;
+	}
+	else
 		game->p.p_y = new_y;
 }
 
@@ -60,7 +92,7 @@ void	process_rotation(t_game *game)
 {
 	double	rot_speed;
 
-	rot_speed = 0.005;
+	rot_speed = 0.01;
 	if (game->input.rot_left)
 		rotate_player(game, -rot_speed);
 	if (game->input.rot_right)

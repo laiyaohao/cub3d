@@ -31,6 +31,8 @@ int	key_down(int key, t_game *game)
 		game->input.rot_left = 1;
 	if (key == KEY_RIGHT)
 		game->input.rot_right = 1;
+	if (key == KEY_SPACE)
+		something_door(game);
 	if (key == KEY_ESC)
 		exit_game(game);
 	return (0);
