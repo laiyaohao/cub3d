@@ -205,6 +205,12 @@ typedef struct s_game
 	t_fray			floor_ray;
 	t_wray			wall_ray;
 	t_sprite		sprite;
+	int				fl_r;
+	int				fl_g;
+	int				fl_b;
+	int				ce_r;
+	int				ce_g;
+	int				ce_b;
 }					t_game;
 
 int					main(int argc, char **argv);

@@ -36,16 +36,28 @@ int store_color(t_game *game, int i, int *j, int tex)
 	parse_integer(game, i, j, &r);
 	if (r < 0 || r > 255)
 		return 0;
+	else if (tex == 4)
+		game->fl_r = r;
+	else
+		game->ce_r = r;
 	if (game->map_file[i][(*j)++] != ',')
 		return 0;
 	parse_integer(game, i, j, &g);
 	if (g < 0 || g > 255)
 		return 0;
+	else if (tex == 4)
+		game->fl_g = g;
+	else
+		game->ce_g = g;
 	if (game->map_file[i][(*j)++] != ',')
 		return 0;
 	parse_integer(game, i, j, &b);
 	if (b < 0 || b > 255)
 		return 0;
+	else if (tex == 4)
+		game->fl_b = b;
+	else
+		game->ce_b = b;
 	while (ft_isspace(game->map_file[i][*j]))
     *j += 1;
 	return (game->map_file[i][*j] == '\0');

@@ -62,8 +62,11 @@ void  store_help(t_game *game, int i, int *tex_num)
     j++;
   if (!game->map_file[i][j])
     exit_game(game);
-  if ((tex == 4 || tex == 5) && store_color(game, i, &j, tex) == 0)
-    exit_game(game);
+  if ((tex == 4 || tex == 5))
+  {
+    if (store_color(game, i, &j, tex) == 0)
+      exit_game(game);
+  }
   else
     store_addr(game, i, j, tex);
   *tex_num += 1;
