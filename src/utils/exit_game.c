@@ -36,6 +36,5 @@ int	exit_game(t_game *game)
 		free(game->mlx.mlx_ptr);
 	}
 	cleanup(game);
-    printf("exited game\n");
 	exit(0);
 }

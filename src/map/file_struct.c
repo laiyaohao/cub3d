@@ -48,7 +48,6 @@ void  store_help(t_game *game, int i, int *tex_num)
   j = 0;
   while (ft_isspace(game->map_file[i][j]))
     j++;
-  printf("here\n");
   if (!game->map_file[i][j])
     return ;
   tex = find_textiles(game, i, j);
@@ -92,7 +91,6 @@ int missing_path(t_game *game)
       return (1);
     i++;
   }
-  printf("finished missing path\n");
   return (0);
 }
 
@@ -140,7 +138,6 @@ void	check_f_str(t_game *game)
   {
     store_help(game, i, &tex_num);
     i++;
-    printf("tex_num: %d\n", tex_num);
     if (tex_num == 6 && missing_path(game))
       exit_game(game);
     else if (tex_num == 6)

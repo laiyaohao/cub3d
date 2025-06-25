@@ -17,7 +17,6 @@ void	process_plane(t_game *game)
 
 void	process_p(t_game *game, int c, int *count)
 {
-	printf("Hi player here\n");
 	*count += 1;
 	if (c == 'N')
 	{
@@ -60,7 +59,6 @@ void	check_arr(t_game *game)
 	while (game->map[i])
 	{
 		k = 0;
-		printf("game->map[i]: %s\n", game->map[i]);
 		while (game->map[i][k])
 		{
 			check_c(game->map[i][k], &count, game);
@@ -70,7 +68,6 @@ void	check_arr(t_game *game)
 	}
 	if (count != 1)
 	{
-		printf("count: %d\n", count);
 		ft_putstr_fd("Error: Include only 1 player in the map\n", 2);
 		exit_game(game);
 	}
@@ -169,7 +166,7 @@ void	check_map(t_game *game)
 	while (i < game->max_h)
 	{
 		j = 0;
-		while (j < game->max_w)
+		while (j < game->max_w && game->map[i][j])
 		{
 			if (game->map[i][j] && game->map[i][j] != ' ' && game->map[i][j] != '1')
 			{
