@@ -1,7 +1,8 @@
-NO ./assets/xpm/wall01.xpm
-SO ./assets/xpm/wall021.xpm
-EA ./assets/xpm/wall03.xpm
-WE ./assets/xpm/wall041.xpm
+NO ./textures/North.xpm
+SO ./textures/South.xpm
+EA ./textures/East.xpm
+WE ./textures/West.xpm
+
 
 F 188, 255, 0
 C 89, 42, 55

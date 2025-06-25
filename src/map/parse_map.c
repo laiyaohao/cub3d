@@ -108,8 +108,8 @@ void	find_player(t_game *game)
 			if (game->map[i][j] == 'N' || game->map[i][j] == 'S' ||
 				game->map[i][j] == 'E' || game->map[i][j] == 'W')
 			{
-				game->p.p_x = i;
-				game->p.p_y = j;
+				game->p.p_x = (double)j + 0.5;
+				game->p.p_y = (double)i + 0.5;
 			}
 			j++;
 		}

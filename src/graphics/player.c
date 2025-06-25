@@ -3,8 +3,6 @@
 void	move_player(double *new_x, double *new_y, t_game *game,
 		double move_speed)
 {
-	*new_x = game->p.p_x;
-	*new_y = game->p.p_y;
 	if (game->input.move_up)
 	{
 		*new_x += game->p.d_x * move_speed;
@@ -33,6 +31,8 @@ void	process_movement(t_game *game)
 	double	new_y;
 	double	move_speed;
 
+	new_x = game->p.p_x;
+	new_y = game->p.p_y;
 	move_speed = 0.015;
 	move_player(&new_x, &new_y, game, move_speed);
 	if (game->map[(int)game->p.p_y][(int)new_x] != '1')
