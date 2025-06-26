@@ -59,9 +59,9 @@ int	find_textiles(t_game *game, int i, int j)
 	else if (ft_strncmp(&game->map_file[i][j], "WE", 2) == 0)
 		return (W_T);
 	else if (ft_strncmp(&game->map_file[i][j], "F", 1) == 0)
-		return (5);
+		return (4);
 	else if (ft_strncmp(&game->map_file[i][j], "C", 1) == 0)
-		return (6);
+		return (5);
 	return (-1);
 }
 
