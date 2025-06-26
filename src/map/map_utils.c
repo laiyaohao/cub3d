@@ -14,38 +14,38 @@ void	check_file(char **argv, t_game *game)
 	}
 	else
 	{
-				game->map_fd = open(argv[1], O_RDONLY);
-				if (game->map_fd < 0)
-				{
-						ft_putstr_fd("Error: Unable to open .cub file\n", 2);
-						exit(1);
-				}
+		game->map_fd = open(argv[1], O_RDONLY);
+		if (game->map_fd < 0)
+		{
+			ft_putstr_fd("Error: Unable to open .cub file\n", 2);
+			exit(1);
+		}
 	}
 }
 
-void    read_map(t_game *game)
+void	read_map(t_game *game)
 {
-		int     bytes;
-		char    buffer[2];
-		char    *temp;
-		
-		bytes = 1;
-		temp = ft_strdup("");
-		if (!temp)
+	int		bytes;
+	char	buffer[2];
+	char	*temp;
+
+	bytes = 1;
+	temp = ft_strdup("");
+	if (!temp)
 		return ;
-		while (bytes)
-		{
-				bytes = read(game->map_fd, buffer, 1);
-				buffer[bytes] = '\0';
-				strcjoin(buffer[0], &temp);
-		}
-		game->map_file = ft_split(temp, '\n');
-		free(temp);
+	while (bytes)
+	{
+		bytes = read(game->map_fd, buffer, 1);
+		buffer[bytes] = '\0';
+		strcjoin(buffer[0], &temp);
+	}
+	game->map_file = ft_split(temp, '\n');
+	free(temp);
 }
 
-int is_map_line(t_game *game, int i)
+int	is_map_line(t_game *game, int i)
 {
-	int j;
+	int	j;
 
 	j = 0;
 	while (game->map_file[i][j])
@@ -62,12 +62,15 @@ int is_map_line(t_game *game, int i)
 	return (1);
 }
 
-int valid_map(t_game *game, int i)
+int	valid_map(t_game *game, int i)
 {
 	while (game->map_file[i])
 	{
 		if (!is_map_line(game, i))
+		{
+			ft_putstr_fd("not a valid map, sadly", 2);
 			exit_game(game);
+		}
 		i++;
 	}
 	return (i);

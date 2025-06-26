@@ -51,10 +51,15 @@ enum
 	S_T,
 	E_T,
 	W_T,
+	T_COUNT
+};
+
+enum
+{
 	F_T,
 	C_T,
 	D_T,
-	T_COUNT
+	B_TCOUNT
 };
 
 typedef struct s_player
@@ -116,14 +121,14 @@ typedef struct s_sprite
 	int				c_frame;
 	int				sprite_h;
 	int				sprite_w;
-	int             tex_x;
-    int             tex_y;
-	int             draw_x_start;
-    int             draw_x_end;
-    int             draw_y_start;
-    int             draw_y_end;
-    int             screen_x;
-	unsigned int    color;
+	int				tex_x;
+	int				tex_y;
+	int				draw_x_start;
+	int				draw_x_end;
+	int				draw_y_start;
+	int				draw_y_end;
+	int				screen_x;
+	unsigned int	color;
 	double			x;
 	double			y;
 	double			sprite_x;
@@ -248,6 +253,11 @@ void				strcjoin(int c, char **res);
 void				check_f_str(t_game *game);
 int					store_color(t_game *game, int i, int *j, int tex);
 int					valid_map(t_game *game, int i);
-int				flood_fill(t_game *game, int x, int y, int **map);
+int					flood_fill(t_game *game, int x, int y, int **map);
+void				check_f_str(t_game *game);
+void				increment_j(int *j, int tex);
+void				store_help(t_game *game, int i, int *tex_num);
+void 				free_2d(void **content);
+void				check_map(t_game *game);
 
 #endif

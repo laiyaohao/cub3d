@@ -8,7 +8,7 @@ void	draw_to_img(t_game *game, int x, int y, int color)
 	int	py;
 
 	i = 0;
-    while (i < MM_SCALE)
+	while (i < MM_SCALE)
 	{
 		j = 0;
 		while (j < MM_SCALE)

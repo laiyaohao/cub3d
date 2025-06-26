@@ -1,28 +1,28 @@
 #include "../../inc/cub3D.h"
 
-void    destroy_images(t_game *game)
+void	destroy_images(t_game *game)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (i < T_COUNT)
-    {
-        if (game->t[i].image)
-            mlx_destroy_image(game->mlx.mlx_ptr, game->t[i].image);
-        i++;
-    }
-    i = 0;
-    while (i < FRAMES)
-    {
-        if (game->s[i].image)
-            mlx_destroy_image(game->mlx.mlx_ptr, game->s[i].image);
-        i++;
-    }
+	i = 0;
+	while (i < T_COUNT)
+	{
+		if (game->t[i].image)
+			mlx_destroy_image(game->mlx.mlx_ptr, game->t[i].image);
+		i++;
+	}
+	i = 0;
+	while (i < FRAMES)
+	{
+		if (game->s[i].image)
+			mlx_destroy_image(game->mlx.mlx_ptr, game->s[i].image);
+		i++;
+	}
 }
 
 int	exit_game(t_game *game)
 {
-    destroy_images(game);
+	destroy_images(game);
 	if (game->img.img_ptr)
 		mlx_destroy_image(game->mlx.mlx_ptr, game->img.img_ptr);
 	if (game->mlx.mlx_win)

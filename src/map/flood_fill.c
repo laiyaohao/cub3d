@@ -18,44 +18,51 @@ int	top_left_corner_empty(t_game *game, int x, int y)
 {
 	if ((x - 1) >= 0 && (y - 1) >= 0)
 	{
-		if (game->map[x-1][y] == '1' && game->map[x][y-1] == '1' && (game->map[x-1][y-1] == ' ' || game->map[x-1][y-1] == '\0'))
+		if (game->map[x - 1][y] == '1' && game->map[x][y - 1] == '1'
+			&& (game->map[x - 1][y - 1] == ' ' || game->map[x - 1][y
+				- 1] == '\0'))
 			return (1);
 	}
 	return (0);
 }
 
-int bottom_right_corner_empty(t_game *game, int x, int y)
+int	bottom_right_corner_empty(t_game *game, int x, int y)
 {
 	if ((x + 1) < game->max_h && (y + 1) < game->max_w)
 	{
-		if (game->map[x][y+1] == '1' && game->map[x+1][y] == '1' && (game->map[x+1][y+1] == ' ' || game->map[x+1][y+1] == '\0'))
+		if (game->map[x][y + 1] == '1' && game->map[x + 1][y] == '1'
+			&& (game->map[x + 1][y + 1] == ' ' || game->map[x + 1][y
+				+ 1] == '\0'))
 			return (1);
 	}
 	return (0);
 }
 
-int bottom_left_corner_empty(t_game *game, int x, int y)
+int	bottom_left_corner_empty(t_game *game, int x, int y)
 {
 	if ((x + 1) < game->max_h && (y - 1) >= 0)
 	{
-		if (game->map[x][y-1] == '1' && game->map[x+1][y] == '1' && (game->map[x+1][y-1] == '\0' || game->map[x+1][y-1] == ' '))
+		if (game->map[x][y - 1] == '1' && game->map[x + 1][y] == '1'
+			&& (game->map[x + 1][y - 1] == '\0' || game->map[x + 1][y
+				- 1] == ' '))
 			return (1);
 	}
 	return (0);
 }
 
-int top_right_corner_empty(t_game *game, int x, int y)
+int	top_right_corner_empty(t_game *game, int x, int y)
 {
 	if ((x - 1) >= 0 && (y + 1) < game->max_w)
 	{
-		if (game->map[x-1][y] == '1' && game->map[x][y+1] == '1' && (game->map[x-1][y+1] == ' ' || game->map[x-1][y+1] == '\0'))
+		if (game->map[x - 1][y] == '1' && game->map[x][y + 1] == '1'
+			&& (game->map[x - 1][y + 1] == ' ' || game->map[x - 1][y
+				+ 1] == '\0'))
 			return (1);
 	}
 	return (0);
 }
 
-
-int flood_fill(t_game *game, int x, int y, int **map)
+int	flood_fill(t_game *game, int x, int y, int **map)
 {
 	int	is_surrounded;
 
@@ -65,11 +72,10 @@ int flood_fill(t_game *game, int x, int y, int **map)
 		return (1);
 	else if (game->map[x][y] == ' ')
 		return (0);
-	else if (top_left_corner_empty(game, x, y) ||
-						bottom_right_corner_empty(game, x, y) ||
-						bottom_left_corner_empty(game, x, y) ||
-						top_right_corner_empty(game, x, y)
-					)
+	else if (top_left_corner_empty(game, x, y)
+		|| bottom_right_corner_empty(game, x, y)
+		|| bottom_left_corner_empty(game, x, y) || top_right_corner_empty(game,
+			x, y))
 		return (0);
 	else
 		map[x][y] = 1;
