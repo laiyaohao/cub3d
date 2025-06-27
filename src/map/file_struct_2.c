@@ -12,7 +12,7 @@ void	store_addr(t_game *game, int i, int j, int tex)
 	addr = malloc(len + 1);
 	if (!addr)
 	{
-		ft_putstr_fd("Cannot allocate memeory\n", 2);
+		ft_putstr_fd("Error: Fatal\n", 2);
 		exit_game(game);
 	}
 	x = 0;
@@ -23,6 +23,8 @@ void	store_addr(t_game *game, int i, int j, int tex)
 		x++;
 	}
 	addr[x] = '\0';
+	if (game->t_path[tex])
+		free(game->t_path[tex]);
 	game->t_path[tex] = addr;
 }
 
@@ -32,7 +34,7 @@ void	store_help_help(t_game *game, int i, int *j, int tex)
 	{
 		if (store_color(game, i, j, tex) == 0)
 		{
-			ft_putstr_fd("Incorrect textures\n", 2);
+			ft_putstr_fd("Error: Incorrect RGB values\n", 2);
 			exit_game(game);
 		}
 	}
@@ -78,7 +80,7 @@ void	store_help(t_game *game, int i, int *tex_num)
 	tex = find_textiles(game, i, j);
 	if (tex == -1)
 	{
-		ft_putstr_fd("Incorrect texture label\n", 2);
+		ft_putstr_fd("Error: Incorrect textures\n", 2);
 		exit_game(game);
 	}
 	increment_j(&j, tex);
@@ -86,7 +88,7 @@ void	store_help(t_game *game, int i, int *tex_num)
 		j++;
 	if (!game->map_file[i][j])
 	{
-		ft_putstr_fd("Incorrect structure for textiles\n", 2);
+		ft_putstr_fd("Error: Incorrect structure for textures\n", 2);
 		exit_game(game);
 	}
 	store_help_help(game, i, &j, tex);

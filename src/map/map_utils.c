@@ -10,7 +10,7 @@ void	check_file(char **argv, t_game *game)
 	if (ft_strncmp(&argv[1][i], ".cub", 5))
 	{
 		ft_putstr_fd("Error: Invalid file, please use a .cub file\n", 2);
-		exit(1);
+		exit_game(game);
 	}
 	else
 	{
@@ -18,7 +18,7 @@ void	check_file(char **argv, t_game *game)
 		if (game->map_fd < 0)
 		{
 			ft_putstr_fd("Error: Unable to open .cub file\n", 2);
-			exit(1);
+			exit_game(game);
 		}
 	}
 }
@@ -67,10 +67,7 @@ int	valid_map(t_game *game, int i)
 	while (game->map_file[i])
 	{
 		if (!is_map_line(game, i))
-		{
-			ft_putstr_fd("not a valid map, sadly", 2);
 			exit_game(game);
-		}
 		i++;
 	}
 	return (i);

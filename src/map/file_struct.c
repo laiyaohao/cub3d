@@ -30,7 +30,7 @@ void	create_map(t_game *game, int i, int j)
 	game->map = malloc(sizeof(char *) * (i - j + 1));
 	if (!game->map)
 	{
-		ft_putstr_fd("Cannot allocate memory for map\n", 2);
+		ft_putstr_fd("Error: Fatal\n", 2);
 		exit_game(game);
 	}
 	k = 0;
@@ -57,7 +57,7 @@ void	check_f_str(t_game *game)
 		i++;
 		if (tex_num == 6 && missing_path(game))
 		{
-			ft_putstr_fd("You have missing path\n", 2);
+			ft_putstr_fd("Error: Missing texture paths\n", 2);
 			exit_game(game);
 		}
 		else if (tex_num == 6)
@@ -66,5 +66,4 @@ void	check_f_str(t_game *game)
 	j = i;
 	i = valid_map(game, i);
 	create_map(game, i, j);
-	free_2d((void **)game->map_file);
 }

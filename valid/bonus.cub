@@ -1,3 +1,8 @@
+NO ./textures/North.xpm
+SO ./textures/South.xpm
+EA ./textures/East.xpm
+WE ./textures/West.xpm
+
 111111111111111111111111
 100000000110010001000001
 100000000000000001000001

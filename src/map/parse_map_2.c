@@ -49,10 +49,7 @@ int	**copy_map(t_game *game)
 	{
 		copy[i] = ft_calloc(game->max_w + 1, sizeof(int));
 		if (!copy[i])
-		{
-			free_2d((void **)copy);
 			exit_game(game);
-		}
 		i++;
 	}
 	copy[i] = NULL;
@@ -76,7 +73,7 @@ void	copy_ff(t_game *game, int *is_sur)
 			{
 				map = copy_map(game);
 				if (flood_fill(game, i, j, map) == 0)
-					is_sur = 0;
+					*is_sur = 0;
 				free_2d((void **)map);
 			}
 			j++;
@@ -94,7 +91,7 @@ void	check_map(t_game *game)
 	copy_ff(game, &is_sur);
 	if (!is_sur)
 	{
-		ft_putstr_fd("map got taiji\n", 2);
+		ft_putstr_fd("Error: Map is not surrounded by walls\n", 2);
 		exit_game(game);
 	}
 }

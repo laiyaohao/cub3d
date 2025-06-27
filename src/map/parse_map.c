@@ -27,12 +27,6 @@ void	process_p(t_game *game, int c, int *count)
 	game->p.plane_y = -game->p.d_x * 0.66;
 }
 
-void	check_c(int c, int *count, t_game *game)
-{
-	if (ft_strchr("NSEW", c))
-		process_p(game, c, count);
-}
-
 void	check_arr(t_game *game)
 {
 	int	i;
@@ -46,14 +40,15 @@ void	check_arr(t_game *game)
 		k = 0;
 		while (game->map[i][k])
 		{
-			check_c(game->map[i][k], &count, game);
+			if (ft_strchr("NSEW", game->map[i][k]))
+				process_p(game, game->map[i][k], &count);
 			k++;
 		}
 		i++;
 	}
 	if (count != 1)
 	{
-		ft_putstr_fd("Error: Include only 1 player in the map\n", 2);
+		ft_putstr_fd("Error: Map should have exactly 1 player\n", 2);
 		exit_game(game);
 	}
 }

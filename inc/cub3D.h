@@ -54,14 +54,6 @@ enum
 	T_COUNT
 };
 
-enum
-{
-	F_T,
-	C_T,
-	D_T,
-	B_TCOUNT
-};
-
 typedef struct s_player
 {
 	double p_x; // x start position
@@ -197,6 +189,7 @@ typedef struct s_game
 	char			**map_file;
 	char			**t_path;
 	char			**s_path;
+	char			**b_path;
 	double			camera_x;
 	double			ray_dx;
 	double			ray_dy;
@@ -205,6 +198,7 @@ typedef struct s_game
 	t_mlx			mlx;
 	t_door			**doors;
 	t_texture		t[T_COUNT];
+	t_texture		b[3];
 	t_texture		s[FRAMES];
 	t_img			img;
 	t_fray			floor_ray;
