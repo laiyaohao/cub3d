@@ -1,13 +1,16 @@
-#include "../../inc/cub3D.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file_struct_bonus.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tiatan <tiatan@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/30 19:34:42 by tiatan            #+#    #+#             */
+/*   Updated: 2025/06/30 19:34:43 by tiatan           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-/**
- * check if file has all the map elements
- * i.e example, NO ./path
- * SO ./path
- * .
- * .
- * and shun bian store the map in last part of map_file in map
- */
+#include "../../inc/cub3D.h"
 
 int	missing_path(t_game *game)
 {

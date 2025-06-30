@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   images.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tiatan <tiatan@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/30 19:26:19 by tiatan            #+#    #+#             */
+/*   Updated: 2025/06/30 19:28:51 by tiatan           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3D.h"
 
 void	process_textures(t_game *game)
@@ -14,7 +26,7 @@ void	process_textures(t_game *game)
 				game->t_path[i], &game->t[i].w, &game->t[i].h);
 		if (!game->t[i].image)
 		{
-			ft_putstr_fd("Error: Invalid texture file, please use a valid .xpm\n", 2);
+			ft_putstr_fd("Error: Invalid texture file\n", 2);
 			exit_game(game);
 		}
 		game->t[i].data = mlx_get_data_addr(game->t[i].image, &game->t[i].bpp,

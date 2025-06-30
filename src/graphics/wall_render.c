@@ -1,15 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   wall_render.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tiatan <tiatan@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/30 19:25:24 by tiatan            #+#    #+#             */
+/*   Updated: 2025/06/30 19:25:41 by tiatan           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3D.h"
 
 void	ray_pos(t_game *game, t_wray *w, int x)
 {
-	// calculate ray position and direction
 	w->camera_x = 1.0 - 2.0 * (double)x / (double)S_WIDTH;
 	w->ray_dx = game->p.d_x + game->p.plane_x * w->camera_x;
 	w->ray_dy = game->p.d_y + game->p.plane_y * w->camera_x;
-	// which box of the map the player is in
 	w->map_x = (int)game->p.p_x;
 	w->map_y = (int)game->p.p_y;
-	// length of ray from one x or y side to the next x or y side
 	if (w->ray_dx == 0)
 		w->delta_dx = 1e30;
 	else
@@ -49,7 +58,6 @@ void	dda(t_game *game, t_wray *w)
 	w->hit = 0;
 	while (w->hit == 0)
 	{
-		// jump to next map square, either in x or y direction
 		if (w->side_dx < w->side_dy)
 		{
 			w->side_dx += w->delta_dx;
@@ -62,7 +70,6 @@ void	dda(t_game *game, t_wray *w)
 			w->map_y += w->step_y;
 			w->side = 1;
 		}
-		// check if ray has hit a wall
 		if (game->map[w->map_y][w->map_x] == '1')
 			w->hit = 1;
 	}
@@ -70,14 +77,11 @@ void	dda(t_game *game, t_wray *w)
 
 void	draw_values(t_wray *w)
 {
-	// calculate distance of perpendicular ray
 	if (w->side == 0)
 		w->pwall_d = w->side_dx - w->delta_dx;
 	else
 		w->pwall_d = w->side_dy - w->delta_dy;
-	// calculate height of line to draw on screen
 	w->line_h = (double)S_HEIGHT / w->pwall_d;
-	// calculate lowest and highest pixel to fill in current stripe
 	w->draw_start = -w->line_h / 2.0 + (double)S_HEIGHT / 2.0;
 	if (w->draw_start < 0.0)
 		w->draw_start = 0.0;
@@ -97,12 +101,9 @@ void	render_wall(t_game *game)
 	while (x < S_WIDTH)
 	{
 		ray_pos(game, &w, x);
-		// calculate step and initial side distance
 		ray_step(game, &w);
-		// DDA
 		dda(game, &w);
 		draw_values(&w);
-		// determine texture to use based on ray
 		select_texture(game, &w, &tex);
 		texture_value(game, &w, tex);
 		cast_texture(game, &w, x, tex);
