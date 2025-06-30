@@ -37,7 +37,7 @@ void	process_b_textures(t_game *game)
 			ft_putstr_fd("Error: Invalid texture file, please use a .xpm\n", 2);
 			exit_game(game);
 		}
-		game->t[i].data = mlx_get_data_addr(game->b[i].image, &game->b[i].bpp,
+		game->b[i].data = mlx_get_data_addr(game->b[i].image, &game->b[i].bpp,
 				&game->b[i].line_len, &game->b[i].endian);
 		i++;
 	}

@@ -18,6 +18,13 @@ void	destroy_images(t_game *game)
 			mlx_destroy_image(game->mlx.mlx_ptr, game->s[i].image);
 		i++;
 	}
+	i = 0;
+	while (i < 3)
+	{
+		if (game->b[i].image)
+			mlx_destroy_image(game->mlx.mlx_ptr, game->b[i].image);
+		i++;
+	}
 }
 
 int	exit_game(t_game *game)

@@ -16,8 +16,6 @@ void	set_values(t_game *game)
 	game->first_mouse = 1;
 	game->s_path[FRAMES] = NULL;
 	game->b_path[3] = NULL;
-	game->sprite.x = 10.5;
-	game->sprite.y = 6.0;
 }
 
 void	init(t_game *game)

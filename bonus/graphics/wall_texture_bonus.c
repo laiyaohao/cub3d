@@ -5,7 +5,10 @@ void	select_texture(t_game *game, t_wray *w, t_texture **tex)
 	int	t_num;
 
 	if (game->map[w->map_y][w->map_x] == 'D')
-		t_num = D_T;
+	{
+		*tex = &game->b[2];
+		return ;
+	}
 	else if (w->side == 0)
 	{
 		if (w->ray_dx > 0)

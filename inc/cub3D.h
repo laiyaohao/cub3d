@@ -56,11 +56,11 @@ enum
 
 typedef struct s_player
 {
-	double p_x; // x start position
-	double p_y; // y start position
-	double d_x; // initial x direction
-	double d_y; // initial y direction
-	double fov; // 2 *atan(0.66/1.0) = 66degrees
+	double			p_x;
+	double			p_y;
+	double			d_x;
+	double			d_y;
+	double			fov;
 	double			plane_x;
 	double			plane_y;
 }					t_player;
@@ -220,6 +220,7 @@ void				parse_map(char **argv, t_game *game);
 void				game_start(t_game *game);
 int					exit_game(t_game *game);
 void				process_textures(t_game *game);
+void				process_b_textures(t_game *game);
 void				process_sprite(t_game *game);
 void				add_doors(t_game *game);
 void				select_texture(t_game *game, t_wray *w, t_texture **tex);
@@ -251,7 +252,7 @@ int					flood_fill(t_game *game, int x, int y, int **map);
 void				check_f_str(t_game *game);
 void				increment_j(int *j, int tex);
 void				store_help(t_game *game, int i, int *tex_num);
-void 				free_2d(void **content);
+void				free_2d(void **content);
 void				check_map(t_game *game);
 
 #endif
