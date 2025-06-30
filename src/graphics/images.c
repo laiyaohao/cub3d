@@ -14,7 +14,7 @@ void	process_textures(t_game *game)
 				game->t_path[i], &game->t[i].w, &game->t[i].h);
 		if (!game->t[i].image)
 		{
-			ft_putstr_fd("Error: Invalid texture file, please use a .xpm\n", 2);
+			ft_putstr_fd("Error: Invalid texture file, please use a valid .xpm\n", 2);
 			exit_game(game);
 		}
 		game->t[i].data = mlx_get_data_addr(game->t[i].image, &game->t[i].bpp,

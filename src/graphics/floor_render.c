@@ -17,19 +17,19 @@ void	render_values(t_game *game, t_fray *f, int y)
 
 void	set_color(t_game *game, t_fray *f, int x, int y)
 {
-	int				r;
-	int				g;
-	int				b;
+	int	r;
+	int	g;
+	int	b;
 
-	r = 50;
-	g = 50;
-	b = 50;
+	r = game->fl_r;
+	g = game->fl_g;
+	b = game->fl_b;
 	f->color = (r << 16) | (g << 8) | b;
 	f->img_offset = y * game->img.line_len + x * (game->img.bpp / 8);
 	*(unsigned int *)(game->img.data + f->img_offset) = f->color;
-	r = 70;
-	g = 70;
-	b = 70;
+	r = game->ce_r;
+	g = game->ce_g;
+	b = game->ce_b;
 	f->color = (r << 16) | (g << 8) | b;
 	f->ceiling_y = S_HEIGHT - y - 1;
 	f->img_offset = f->ceiling_y * game->img.line_len + x * (game->img.bpp / 8);
@@ -38,10 +38,10 @@ void	set_color(t_game *game, t_fray *f, int x, int y)
 
 void	render_floor(t_game *game)
 {
-	int				x;
-	int				y;
-	t_fray			f;
-	
+	int		x;
+	int		y;
+	t_fray	f;
+
 	f = game->floor_ray;
 	y = 0;
 	while (y < S_HEIGHT)

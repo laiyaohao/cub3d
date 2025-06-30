@@ -51,19 +51,16 @@ enum
 	S_T,
 	E_T,
 	W_T,
-	F_T,
-	C_T,
-	D_T,
 	T_COUNT
 };
 
 typedef struct s_player
 {
-	double p_x; // x start position
-	double p_y; // y start position
-	double d_x; // initial x direction
-	double d_y; // initial y direction
-	double fov; // 2 *atan(0.66/1.0) = 66degrees
+	double			p_x;
+	double			p_y;
+	double			d_x;
+	double			d_y;
+	double			fov;
 	double			plane_x;
 	double			plane_y;
 }					t_player;
@@ -116,14 +113,14 @@ typedef struct s_sprite
 	int				c_frame;
 	int				sprite_h;
 	int				sprite_w;
-	int             tex_x;
-    int             tex_y;
-	int             draw_x_start;
-    int             draw_x_end;
-    int             draw_y_start;
-    int             draw_y_end;
-    int             screen_x;
-	unsigned int    color;
+	int				tex_x;
+	int				tex_y;
+	int				draw_x_start;
+	int				draw_x_end;
+	int				draw_y_start;
+	int				draw_y_end;
+	int				screen_x;
+	unsigned int	color;
 	double			x;
 	double			y;
 	double			sprite_x;
@@ -189,8 +186,10 @@ typedef struct s_game
 	int				d_count;
 	int64_t			l_time;
 	char			**map;
+	char			**map_file;
 	char			**t_path;
 	char			**s_path;
+	char			**b_path;
 	double			camera_x;
 	double			ray_dx;
 	double			ray_dy;
@@ -199,11 +198,18 @@ typedef struct s_game
 	t_mlx			mlx;
 	t_door			**doors;
 	t_texture		t[T_COUNT];
+	t_texture		b[3];
 	t_texture		s[FRAMES];
 	t_img			img;
 	t_fray			floor_ray;
 	t_wray			wall_ray;
 	t_sprite		sprite;
+	int				fl_r;
+	int				fl_g;
+	int				fl_b;
+	int				ce_r;
+	int				ce_g;
+	int				ce_b;
 }					t_game;
 
 int					main(int argc, char **argv);
@@ -214,6 +220,7 @@ void				parse_map(char **argv, t_game *game);
 void				game_start(t_game *game);
 int					exit_game(t_game *game);
 void				process_textures(t_game *game);
+void				process_b_textures(t_game *game);
 void				process_sprite(t_game *game);
 void				add_doors(t_game *game);
 void				select_texture(t_game *game, t_wray *w, t_texture **tex);
@@ -238,5 +245,14 @@ void				cleanup(t_game *game);
 void				draw_to_img(t_game *game, int x, int y, int color);
 void				pixel_put(t_game *game, int x, int y, int color);
 void				strcjoin(int c, char **res);
+void				check_f_str(t_game *game);
+int					store_color(t_game *game, int i, int *j, int tex);
+int					valid_map(t_game *game, int i);
+int					flood_fill(t_game *game, int x, int y, int **map);
+void				check_f_str(t_game *game);
+void				increment_j(int *j, int tex);
+void				store_help(t_game *game, int i, int *tex_num);
+void				free_2d(void **content);
+void				check_map(t_game *game);
 
 #endif

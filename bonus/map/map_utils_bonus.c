@@ -50,7 +50,7 @@ int	is_map_line(t_game *game, int i)
 	j = 0;
 	while (game->map_file[i][j])
 	{
-		if (!ft_strchr("01NSEW ", game->map_file[i][j]))
+		if (!ft_strchr("01NSEW DA", game->map_file[i][j]))
 		{
 			ft_putstr_fd("Error: Invalid character: ", 2);
 			ft_putchar_fd(game->map_file[i][j], 2);

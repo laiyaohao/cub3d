@@ -1,0 +1,20 @@
+NO ./textures/North.xpm
+
+SO ./textures/South.xpm
+
+WE ./textures/West.xpm
+
+EA ./textures/East.xpm
+
+F    247, 236, 82
+
+
+
+
+C   187, 43, 227
+
+ 1 1 1 1
+11111111111
+10N000000011
+11111111111
+1  1   1  11

@@ -32,7 +32,7 @@ INIT_FILENAMES := init.c
 INIT_FILES := ${addprefix ${INIT_FOLDER}, ${INIT_FILENAMES}}
 
 MAP_FOLDER := ${addprefix ${SRC_FOLDER}, /map/}
-MAP_FILENAMES := map_utils.c parse_map.c
+MAP_FILENAMES := map_utils.c parse_map.c parse_map_2.c file_struct.c storing.c flood_fill.c file_struct_2.c
 MAP_FILES := ${addprefix ${MAP_FOLDER}, ${MAP_FILENAMES}}
 
 UTILS_FOLDER := ${addprefix ${SRC_FOLDER}, /utils/}
@@ -48,10 +48,14 @@ BONUS_NAME := cub3D_bonus
 B_SRC_FOLDER := bonus
 
 B_GRAPHICS_FOLDER := ${addprefix ${B_SRC_FOLDER}, /graphics/}
-B_GRAPHICS_FILENAMES := b_game.c b_controls.c b_player.c b_images.c b_floor_render.c b_wall_render.c b_wall_texture.c b_minimap.c b_mouse.c b_door.c b_sprite.c
+B_GRAPHICS_FILENAMES := game_bonus.c controls_bonus.c player_bonus.c images_bonus.c floor_render_bonus.c wall_render_bonus.c wall_texture_bonus.c minimap_bonus.c mouse_bonus.c door_bonus.c sprite_bonus.c
 B_GRAPHICS_FILES := ${addprefix ${B_GRAPHICS_FOLDER}, ${B_GRAPHICS_FILENAMES}}
 
-BONUS_SRC := ${MAIN_FILES} ${B_GRAPHICS_FILES} ${INIT_FILES} ${MAP_FILES} ${UTILS_FILES}
+B_MAP_FOLDER := ${addprefix ${B_SRC_FOLDER}, /map/}
+B_MAP_FILENAMES := map_utils_bonus.c parse_map_bonus.c parse_map_2_bonus.c file_struct_bonus.c storing_bonus.c flood_fill_bonus.c file_struct_2_bonus.c
+B_MAP_FILES := ${addprefix ${B_MAP_FOLDER}, ${B_MAP_FILENAMES}}
+
+BONUS_SRC := ${MAIN_FILES} ${B_GRAPHICS_FILES} ${INIT_FILES} ${B_MAP_FILES} ${UTILS_FILES}
 
 BONUS_OBJS := ${BONUS_SRC:.c=.o}
 

@@ -35,6 +35,7 @@ void	game_start(t_game *game)
 {
 	create_window(game);
 	process_textures(game);
+	process_b_textures(game);
 	process_sprite(game);
 	add_doors(game);
 	mlx_hook(game->mlx.mlx_win, keydown, 1L << 0, key_down, game);

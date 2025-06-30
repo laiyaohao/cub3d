@@ -1,5 +1,11 @@
 #include "../../inc/cub3D.h"
 
+void	sprite_pos(int i, int k, t_game *game)
+{
+	game->sprite.x = (double)k + 0.5;
+	game->sprite.y = (double)i + 0.5;
+}
+
 void	process_p(t_game *game, int c, int *count)
 {
 	*count += 1;
@@ -42,6 +48,8 @@ void	check_arr(t_game *game)
 		{
 			if (ft_strchr("NSEW", game->map[i][k]))
 				process_p(game, game->map[i][k], &count);
+			if (ft_strchr("A", game->map[i][k]))
+				sprite_pos(i, k, game);
 			k++;
 		}
 		i++;
