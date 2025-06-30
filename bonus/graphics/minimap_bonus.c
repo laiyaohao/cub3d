@@ -6,7 +6,7 @@
 /*   By: tiatan <tiatan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 19:29:45 by tiatan            #+#    #+#             */
-/*   Updated: 2025/06/30 19:29:46 by tiatan           ###   ########.fr       */
+/*   Updated: 2025/06/30 19:46:28 by tiatan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,16 @@ void	minimap_bg(t_game *game)
 {
 	int	x;
 	int	y;
+	int	mm_size;
+	int	mm_px;
 
 	y = 0;
-	while (y < MM_PX - 8)
+	mm_size = 2 * MM_RADIUS + 1;
+	mm_px = mm_size * MM_SCALE;
+	while (y < mm_px - 8)
 	{
 		x = 0;
-		while (x < MM_PX - 8)
+		while (x < mm_px - 8)
 		{
 			draw_to_img(game, MM_OFFSET + x, MM_OFFSET + y, 0x000000);
 			x++;

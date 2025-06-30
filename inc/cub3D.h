@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tiatan <tiatan@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/30 19:42:52 by tiatan            #+#    #+#             */
+/*   Updated: 2025/06/30 19:45:51 by tiatan           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 # define _USE_MATH_DEFINES
@@ -27,8 +39,6 @@
 # define S_WIDTH 1280
 # define MM_RADIUS 5
 # define MM_SCALE 8
-# define MM_SIZE (2 * MM_RADIUS + 1)
-# define MM_PX (MM_SIZE * MM_SCALE)
 # define MM_OFFSET 10
 # define FRAMES 3
 # define SPRITE_WIDTH 64
