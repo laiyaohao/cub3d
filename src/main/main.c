@@ -6,7 +6,7 @@
 /*   By: tiatan <tiatan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 19:24:58 by tiatan            #+#    #+#             */
-/*   Updated: 2025/06/30 19:24:59 by tiatan           ###   ########.fr       */
+/*   Updated: 2025/07/01 15:19:04 by tiatan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int argc, char **argv)
 	else
 	{
 		ft_memset(&game, 0, sizeof(t_game));
+		game.map_fd = -1;
 		init(&game);
 		parse_map(argv, &game);
 		game_start(&game);

@@ -6,7 +6,7 @@
 /*   By: tiatan <tiatan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 19:34:35 by tiatan            #+#    #+#             */
-/*   Updated: 2025/06/30 19:34:36 by tiatan           ###   ########.fr       */
+/*   Updated: 2025/07/01 15:24:29 by tiatan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,7 @@ void	store_addr(t_game *game, int i, int j, int tex)
 
 void	store_help_help(t_game *game, int i, int *j, int tex)
 {
-	if ((tex == 4 || tex == 5))
-	{
-		if (store_color(game, i, j, tex) == 0)
-		{
-			ft_putstr_fd("Error: Incorrect RGB values\n", 2);
-			exit_game(game);
-		}
-	}
-	else
-		store_addr(game, i, *j, tex);
+	store_addr(game, i, *j, tex);
 }
 
 void	increment_j(int *j, int tex)
@@ -72,10 +63,6 @@ int	find_textiles(t_game *game, int i, int j)
 		return (E_T);
 	else if (ft_strncmp(&game->map_file[i][j], "WE", 2) == 0)
 		return (W_T);
-	else if (ft_strncmp(&game->map_file[i][j], "F", 1) == 0)
-		return (4);
-	else if (ft_strncmp(&game->map_file[i][j], "C", 1) == 0)
-		return (5);
 	return (-1);
 }
 

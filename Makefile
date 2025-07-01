@@ -52,7 +52,7 @@ B_GRAPHICS_FILENAMES := game_bonus.c controls_bonus.c player_bonus.c images_bonu
 B_GRAPHICS_FILES := ${addprefix ${B_GRAPHICS_FOLDER}, ${B_GRAPHICS_FILENAMES}}
 
 B_MAP_FOLDER := ${addprefix ${B_SRC_FOLDER}, /map/}
-B_MAP_FILENAMES := map_utils_bonus.c parse_map_bonus.c parse_map_2_bonus.c file_struct_bonus.c storing_bonus.c flood_fill_bonus.c file_struct_2_bonus.c
+B_MAP_FILENAMES := map_utils_bonus.c parse_map_bonus.c parse_map_2_bonus.c file_struct_bonus.c flood_fill_bonus.c file_struct_2_bonus.c
 B_MAP_FILES := ${addprefix ${B_MAP_FOLDER}, ${B_MAP_FILENAMES}}
 
 BONUS_SRC := ${MAIN_FILES} ${B_GRAPHICS_FILES} ${INIT_FILES} ${B_MAP_FILES} ${UTILS_FILES}

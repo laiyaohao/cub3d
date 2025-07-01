@@ -6,7 +6,7 @@
 /*   By: tiatan <tiatan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 19:27:21 by tiatan            #+#    #+#             */
-/*   Updated: 2025/06/30 19:27:22 by tiatan           ###   ########.fr       */
+/*   Updated: 2025/07/01 15:18:22 by tiatan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	cleanup(t_game *game)
 {
 	if (!game)
 		return ;
+	if (game->map_fd != -1)
+		close(game->map_fd);
 	if (game->map)
 		free_2d((void **)game->map);
 	if (game->t_path)
