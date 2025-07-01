@@ -6,7 +6,7 @@
 /*   By: tiatan <tiatan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 19:29:54 by tiatan            #+#    #+#             */
-/*   Updated: 2025/06/30 19:29:55 by tiatan           ###   ########.fr       */
+/*   Updated: 2025/07/01 12:36:20 by tiatan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,6 @@ int	get_pixel(t_texture *frame, int x, int y)
 	return (*(unsigned int *)(frame->data + offset));
 }
 
-void	update_sprite(t_game *game, double c_time)
-{
-	if (c_time >= game->l_time + 20)
-	{
-		game->l_time = c_time;
-		game->sprite.c_frame = (game->sprite.c_frame + 1) % FRAMES;
-	}
-}
-
 void	check_limits(t_sprite *s)
 {
 	if (s->draw_y_start < 0)
@@ -48,30 +39,39 @@ void	check_limits(t_sprite *s)
 		s->draw_x_end = S_WIDTH - 1;
 }
 
+void	sprite_pixel(t_game *game, t_sprite *s, t_texture *frame, int coord[2])
+{
+	int	d;
+
+	d = coord[1] * 256 - S_HEIGHT * 128 + s->sprite_h * 128;
+	s->tex_y = ((d * frame->h) / s->sprite_h) / 256;
+	s->color = get_pixel(frame, s->tex_x, s->tex_y);
+	if ((s->color & 0x00FFFFFF) != 0)
+		pixel_put(game, coord[0], coord[1], s->color);
+}
+
 void	draw_sprite(t_game *game, t_sprite *s, t_texture *frame)
 {
 	int	x;
 	int	y;
-	int	d;
+	int	coord[2];
 
 	x = s->draw_x_start;
 	while (x < s->draw_x_end)
 	{
 		s->tex_x = (int)((x - (-s->sprite_w / 2 + s->screen_x)) * frame->w
 				/ s->sprite_w);
-		y = s->draw_y_start;
-		while (y < s->draw_y_end)
+		if (s->trans_y > 0 && x >= 0 && x < S_WIDTH
+			&& s->trans_y < game->wall_ray.pd_buffer[x])
 		{
-			d = y * 256 - S_HEIGHT * 128 + s->sprite_h * 128;
-			s->tex_y = ((d * frame->h) / s->sprite_h) / 256;
-			s->color = get_pixel(frame, s->tex_x, s->tex_y);
-			if (s->tex_x >= 0 && s->tex_x < frame->w && s->tex_y >= 0
-				&& s->tex_y < frame->h)
+			y = s->draw_y_start;
+			while (y < s->draw_y_end)
 			{
-				if ((s->color & 0x00FFFFFF) != 0)
-					pixel_put(game, x, y, s->color);
+				coord[0] = x;
+				coord[1] = y;
+				sprite_pixel(game, s, frame, coord);
+				y++;
 			}
-			y++;
 		}
 		x++;
 	}

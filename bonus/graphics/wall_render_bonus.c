@@ -6,7 +6,7 @@
 /*   By: tiatan <tiatan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 19:30:10 by tiatan            #+#    #+#             */
-/*   Updated: 2025/06/30 19:30:11 by tiatan           ###   ########.fr       */
+/*   Updated: 2025/07/01 12:36:23 by tiatan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void	render_wall(t_game *game)
 		ray_step(game, &w);
 		dda(game, &w);
 		draw_values(&w);
+		game->wall_ray.pd_buffer[x] = w.pwall_d;
 		select_texture(game, &w, &tex);
 		texture_value(game, &w, tex);
 		cast_texture(game, &w, x, tex);

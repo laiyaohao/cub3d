@@ -6,7 +6,7 @@
 /*   By: tiatan <tiatan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 19:42:52 by tiatan            #+#    #+#             */
-/*   Updated: 2025/06/30 19:45:51 by tiatan           ###   ########.fr       */
+/*   Updated: 2025/07/01 12:40:56 by tiatan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,7 @@ typedef struct s_wray
 	double			delta_dy;
 	double			pwall_d;
 	double			p_step;
+	double			pd_buffer[S_WIDTH];
 }					t_wray;
 
 typedef struct s_game
