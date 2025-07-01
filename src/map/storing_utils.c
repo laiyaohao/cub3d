@@ -6,7 +6,7 @@
 /*   By: ylai <ylai@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 14:39:34 by ylai              #+#    #+#             */
-/*   Updated: 2025/07/01 15:06:16 by ylai             ###   ########.fr       */
+/*   Updated: 2025/07/01 15:36:53 by ylai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int	parse_integer(t_game *game, int i, int *j, int *result)
 
 	*result = 0;
 	sign = 1;
-	k = *j;
 	while (ft_isspace(game->map_file[i][*j]))
 		*j += 1;
+	k = *j;
 	while ((game->map_file[i][*j] >= 9 && game->map_file[i][*j] <= 13)
 		|| game->map_file[i][*j] == 32)
 		*j += 1;
@@ -44,7 +44,7 @@ int	parse_integer(t_game *game, int i, int *j, int *result)
 	{
 		*result = *result * 10 + (game->map_file[i][*j] - 48);
 		*j += 1;
-		if ((*j - k) >= 4)
+		if ((*j - k) >= 5)
 			return (256);
 	}
 	return (store_result(j, k, sign, result));
