@@ -6,7 +6,7 @@
 /*   By: tiatan <tiatan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 19:26:31 by tiatan            #+#    #+#             */
-/*   Updated: 2025/06/30 19:26:32 by tiatan           ###   ########.fr       */
+/*   Updated: 2025/07/01 19:08:46 by tiatan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	set_color(t_game *game, t_fray *f, int x, int y)
 	int	g;
 	int	b;
 
+	(void)x;
 	r = game->fl_r;
 	g = game->fl_g;
 	b = game->fl_b;

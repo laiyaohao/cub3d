@@ -6,7 +6,7 @@
 /*   By: tiatan <tiatan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 19:25:04 by tiatan            #+#    #+#             */
-/*   Updated: 2025/06/30 19:25:05 by tiatan           ###   ########.fr       */
+/*   Updated: 2025/07/01 18:52:01 by tiatan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ void	set_values(t_game *game)
 	game->t_path[1] = ft_strdup("");
 	game->t_path[2] = ft_strdup("");
 	game->t_path[3] = ft_strdup("");
-	game->t_path[4] = NULL;
+	game->t_path[4] = ft_strdup("");
+	game->t_path[5] = ft_strdup("");
+	game->t_path[6] = NULL;
 	game->first_mouse = 1;
 	game->s_path[FRAMES] = NULL;
 	game->b_path[3] = NULL;

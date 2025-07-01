@@ -6,7 +6,7 @@
 /*   By: tiatan <tiatan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 19:26:48 by tiatan            #+#    #+#             */
-/*   Updated: 2025/06/30 19:26:49 by tiatan           ###   ########.fr       */
+/*   Updated: 2025/07/01 19:16:47 by tiatan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,11 @@ int	missing_path(t_game *game)
 	i = 0;
 	while (i < T_COUNT)
 	{
-		if (!game->t_path[i])
+		if (!ft_strlen(game->t_path[i]))
+		{
+			printf("index: %i\n", i);
 			return (1);
+		}
 		i++;
 	}
 	return (0);

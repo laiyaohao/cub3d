@@ -6,7 +6,7 @@
 /*   By: tiatan <tiatan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 19:29:39 by tiatan            #+#    #+#             */
-/*   Updated: 2025/06/30 19:29:42 by tiatan           ###   ########.fr       */
+/*   Updated: 2025/07/01 19:40:09 by tiatan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	process_textures(t_game *game)
 	game->img.data = mlx_get_data_addr(game->img.img_ptr, &game->img.bpp,
 			&game->img.line_len, &game->img.endian);
 	i = 0;
-	while (i < T_COUNT)
+	while (i < 4)
 	{
 		game->t[i].image = mlx_xpm_file_to_image(game->mlx.mlx_ptr,
 				game->t_path[i], &game->t[i].w, &game->t[i].h);
