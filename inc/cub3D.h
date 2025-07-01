@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiatan <tiatan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ylai <ylai@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 19:42:52 by tiatan            #+#    #+#             */
-/*   Updated: 2025/07/01 12:40:56 by tiatan           ###   ########.fr       */
+/*   Updated: 2025/07/01 14:41:15 by ylai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -265,5 +265,6 @@ void				increment_j(int *j, int tex);
 void				store_help(t_game *game, int i, int *tex_num);
 void				free_2d(void **content);
 void				check_map(t_game *game);
+int					parse_integer(t_game *game, int i, int *j, int *result);
 
 #endif

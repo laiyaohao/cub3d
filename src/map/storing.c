@@ -3,41 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   storing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiatan <tiatan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ylai <ylai@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 19:27:12 by tiatan            #+#    #+#             */
-/*   Updated: 2025/06/30 19:27:13 by tiatan           ###   ########.fr       */
+/*   Updated: 2025/07/01 15:05:21 by ylai             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h"
-
-static int	parse_integer(t_game *game, int i, int *j, int *result)
-{
-	int	sign;
-
-	*result = 0;
-	sign = 1;
-	while (ft_isspace(game->map_file[i][*j]))
-		*j += 1;
-	while ((game->map_file[i][*j] >= 9 && game->map_file[i][*j] <= 13)
-		|| game->map_file[i][*j] == 32)
-		*j += 1;
-	if (game->map_file[i][*j] == '-' || game->map_file[i][*j] == '+')
-	{
-		if (game->map_file[i][*j] == '-')
-			sign = -1;
-		*j += 1;
-	}
-	while (game->map_file[i][*j] >= '0' && game->map_file[i][*j] <= '9')
-	{
-		*result = *result * 10 + (game->map_file[i][*j] - 48);
-		*j += 1;
-	}
-	if (sign == -1)
-		*result = *result * -1;
-	return (*result);
-}
 
 int	store_red(t_game *game, int i, int *j, int tex)
 {
